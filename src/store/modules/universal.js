@@ -76,8 +76,11 @@ export default {
             if (context.getters.root.sub === context.getters.jwt.sub) {
                 context.dispatch('updateUserSwitches', response.body.data.user_switches.data)
             }
+
+            context.commit('STOP_LOADING')
         }).catch(() => {
             context.dispatch('updateUser', {})
+            context.commit('STOP_LOADING')
         }),
 
         $init: (context) => {
@@ -87,10 +90,12 @@ export default {
             }
 
             Vue.localForage.getItem('updateUser').then((data) => {
-                if (data) context.commit('UPDATE_USER', data)
-                if (!context.getters.root.sub) context.commit('UPDATE_ROOT_USER', data)
+                if (data) {
+                    context.commit('UPDATE_USER', data)
+                    context.commit('STOP_LOADING')
+                }
 
-                context.commit('STOP_LOADING')
+                if (!context.getters.root.sub) context.commit('UPDATE_ROOT_USER', data)
             })
 
             Vue.localForage.getItem('updatePermissions').then((data) => {
