@@ -83,13 +83,13 @@ export default {
             context.commit('STOP_LOADING')
         }),
 
-        $init: (context) => {
+        $init: async (context) => {
             if (!localStorage.getItem('jwt')) {
                 context.commit('STOP_LOADING')
                 return
             }
 
-            Vue.localForage.getItem('updateUser').then((data) => {
+            await Vue.localForage.getItem('updateUser').then((data) => {
                 if (data) {
                     context.commit('UPDATE_USER', data)
                     context.commit('STOP_LOADING')
