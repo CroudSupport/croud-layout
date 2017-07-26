@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <top-bar v-if="user.id" :user="user"></top-bar>
+    <top-bar v-if="user.id && !suppressTopbar" :user="user"></top-bar>
     <div v-if="loading" class="ui very padded basic center aligned loading-overlay segment">
         <div>
             <img class="ui small image" src='../static/img/croud_logo_new.svg' />
@@ -8,7 +8,7 @@
     </div>
     <login v-else-if="!user.id"></login>
     <div v-else id="main-content">
-        <div id="main-navigation" class="main-navigation">
+        <div v-if="!suppressNav" id="main-navigation" class="main-navigation">
           <div class="contained">
             <navigation
               :expanded="expanded"
@@ -17,7 +17,7 @@
             </navigation>
           </div>
         </div>
-        <div id="main-content-container">
+        <div :id="!suppressNav ? 'main-content-container' : ''">
           <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
           <h1 v-if="title" v-html="title"></h1>
           <div id="main-content-body" v-bind:class="classList">
@@ -43,7 +43,14 @@ export default {
         flush: {
             default: true,
         },
+        suppressNav: {
+            default: false,
+        },
+        suppressTopbar: {
+            default: false,
+        },
     },
+
     computed: {
         classList() {
             const arr = []
