@@ -84,6 +84,7 @@ export default {
         }),
 
         $init: async (context) => {
+            context.state.loading = true
             if (!localStorage.getItem('jwt')) {
                 context.commit('STOP_LOADING')
                 return

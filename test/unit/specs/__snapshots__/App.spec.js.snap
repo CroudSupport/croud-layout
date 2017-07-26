@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.vue Cached data + jwt Full temnplate 1`] = `
+<div
+  id="main-container"
+>
+  <div
+    id="header"
+    class="development"
+  >
+    <div
+      id="quickJobHeader"
+    >
+      <div
+        id="quick-selector"
+      >
+        <!--  -->
+      </div>
+    </div>
+    <div
+      id="loggedIn"
+    >
+      <a
+        href="#"
+      >
+        <img
+          class="thumbnail"
+          style="vertical-align: middle;"
+        />
+        <strong />
+      </a>
+    </div>
+    <div
+      id="user_switcher"
+    >
+      <div>
+        <div
+          class="switcher"
+        >
+          <div
+            class="ui floating labeled icon top right pointing dropdown tiny positive button"
+            tabindex="0"
+          >
+            <i
+              class="exchange icon"
+            />
+            <span
+              class="text"
+            >
+              Switch
+            </span>
+            <div
+              class="menu"
+              tabindex="-1"
+            >
+              <button
+                class="ui button tiny logout blue"
+              >
+                logout
+              </button>
+              <div
+                class="header"
+              >
+                <img
+                  data-id="test"
+                  class="ui avatar image"
+                />
+                <div
+                  class="label"
+                />
+              </div>
+              <div
+                class="divider"
+              />
+              <!--  -->
+              <!--  -->
+              <div
+                class="scrolling menu"
+              />
+              <div
+                class="ui inverted dimmer"
+              >
+                <div
+                  class="ui text large loader"
+                >
+                  Switching User
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="wrapper"
+    >
+      <a
+        href="/"
+      >
+        <h1
+          id="logo"
+        >
+          Croud Control
+        </h1>
+      </a>
+    </div>
+  </div>
+  <div
+    class=""
+    id="main-content"
+  >
+    <div
+      id="main-navigation"
+      class="main-navigation"
+    >
+      <div
+        class="contained"
+      >
+        <!--  -->
+      </div>
+    </div>
+    <div
+      id="main-content-container"
+    >
+      <!--  -->
+      <div
+        id="main-content-body"
+        class="flush-body without-heading"
+      >
+        <h1
+          class="ui heading"
+        >
+          Test
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App.vue Cached data + jwt empty template 1`] = `
+<div
+  id="main-container"
+>
+  <!--  -->
+  <div
+    class=""
+    id="main-content"
+  >
+    <!--  -->
+    <div
+      id=""
+    >
+      <!--  -->
+      <div
+        id="main-content-body"
+        class="flush-body without-heading"
+      >
+        <h1
+          class="ui heading"
+        >
+          Test
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App.vue should bounce to login page if no JWT exists 1`] = `
+<div
+  id="main-container"
+>
+  <!--  -->
+  <div
+    class="login-container"
+  >
+    <!--  -->
+  </div>
+</div>
+`;
+
+exports[`App.vue should carry on loading with jwt but no cached data 1`] = `
+<div
+  id="main-container"
+>
+  <!--  -->
+  <div
+    class="ui very padded basic center aligned loading-overlay segment"
+  >
+    <div>
+      <img
+        src="../static/img/croud_logo_new.svg"
+        class="ui small image"
+      />
+    </div>
+  </div>
+</div>
+`;

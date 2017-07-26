@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 class LocalStorageMock {
     constructor() {
         this.store = {}
@@ -21,3 +23,6 @@ class LocalStorageMock {
 }
 
 global.localStorage = new LocalStorageMock()
+
+
+global.$ = global.jQuery = $
