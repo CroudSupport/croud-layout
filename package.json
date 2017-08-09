@@ -1,7 +1,7 @@
 {
   "name": "croud-layout",
   "main": "src/plugin.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A Vue.js project",
   "author": "Brock <brock.reece@croud.co.uk>",
   "private": false,
@@ -113,8 +113,8 @@
       "vue"
     ],
     "transform": {
-        "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-        ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
     },
     "moduleNameMapper": {
       "@/components/(.*).$": "<rootDir>/src/components/$1.vue"
