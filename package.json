@@ -12,15 +12,18 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "install": "mkdir -p ../../static/img && cp -r ./static/img/ ../../static/img/"
+    "install": "concurrently \"mkdirp ../../static/img\" \"ncp ./static/img/ ../../static/img/\""
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "concurrently": "^3.5.0",
     "jquery": "^3.2.1",
     "jwt-decode": "^2.2.0",
     "localforage": "^1.5.0",
     "localstorage": "git+https://github.com/CroudSupport/localstorage.git",
     "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
     "qs": "^6.5.0",
     "url-template": "^2.0.8"
   },
