@@ -1,5 +1,7 @@
 # croud-layout
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/CroudSupport/croud-layout.svg)](https://greenkeeper.io/)
+
 ## Plugin
 Step 1: Install plugin
 ```bash
