@@ -119,5 +119,8 @@
     "setupFiles": [
       "<rootDir>/test/unit/mocks/localStorage.js"
     ]
+  },
+  "peerDependencies": {
+    "croud-style-guide": "^1.0.0"
   }
 }
