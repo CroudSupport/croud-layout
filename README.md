@@ -1,4 +1,5 @@
 # croud-layout
+[![npm version](https://badge.fury.io/js/croud-layout.svg)](https://badge.fury.io/js/croud-layout)
 
 ## Plugin
 Step 1: Install plugin
