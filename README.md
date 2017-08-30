@@ -1,4 +1,5 @@
 # croud-layout
+[![Build Status](https://travis-ci.org/CroudSupport/croud-layout.svg?branch=master)](https://travis-ci.org/CroudSupport/croud-layout)
 [![npm version](https://badge.fury.io/js/croud-layout.svg)](https://badge.fury.io/js/croud-layout)
 
 ## Plugin
