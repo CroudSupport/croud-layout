@@ -1,24 +1,22 @@
-jQuery(function($){
+jQuery(($) => {
+    window.vue = window.vue || require('vue')
+    window.vue_resource = window.vue_resource || require('vue-resource')
 
-  window.vue = window.vue || require('vue');
-  window.vue_resource = window.vue_resource || require('vue-resource');
+    const Vue = window.vue
+    Vue.use((window.vue_resource))
+    Vue.use(require('croud-vue-semantic'))
+    Vue.use(require('vue-env'))
 
-  const Vue = window.vue;
-  Vue.use((window.vue_resource));
-  Vue.use(require('vue-semantic'));
-  Vue.use(require('vue-env'));
+    const App = require('./App.vue')
 
-  const App = require('./App.vue');
+    new Vue({
 
-  new Vue({
+        components: { App },
 
-    components: {App},
+        el: '#login-container',
 
-    el: '#login-container',
+        data: {},
 
-    data: {},
-
-    template: `<div id="login-container"><app>asddsaasd</app></div>`
-  })
-
+        template: '<div id="login-container"><app>asddsaasd</app></div>',
+    })
 })

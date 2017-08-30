@@ -9,7 +9,7 @@ import '../semantic/dist/semantic.min'
 import '../semantic/dist/semantic.min.css'
 
 Vue.config.productionTip = false
-Vue.use(require('vue-semantic'))
+Vue.use(require('croud-vue-semantic'))
 
 /* eslint-disable no-new */
 new Vue({
