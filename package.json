@@ -117,7 +117,7 @@
       "@/components/(.*).$": "<rootDir>/src/components/$1.vue"
     },
     "setupFiles": [
-      "<rootDir>/test/unit/mocks/localstorage.js"
+      "<rootDir>/test/unit/mocks/localStorage.js"
     ]
   }
 }
