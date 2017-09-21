@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container">test
+  <div id="main-container">
     <top-bar v-if="user.id && !suppressTopbar" :user="user"></top-bar>
     <div v-if="loading" class="ui very padded basic center aligned loading-overlay segment">
         <div>
