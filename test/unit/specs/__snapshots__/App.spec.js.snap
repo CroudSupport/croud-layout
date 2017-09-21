@@ -106,7 +106,6 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
     </div>
   </div>
   <div
-    class=""
     id="main-content"
   >
     <div
@@ -142,9 +141,7 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
 <div
   id="main-container"
 >
-  <!--  -->
   <div
-    class=""
     id="main-content"
   >
     <!--  -->
@@ -171,7 +168,6 @@ exports[`App.vue should bounce to login page if no JWT exists 1`] = `
 <div
   id="main-container"
 >
-  <!--  -->
   <div
     class="login-container"
   >
@@ -184,7 +180,6 @@ exports[`App.vue should carry on loading with jwt but no cached data 1`] = `
 <div
   id="main-container"
 >
-  <!--  -->
   <div
     class="ui very padded basic center aligned loading-overlay segment"
   >
