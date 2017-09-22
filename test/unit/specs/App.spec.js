@@ -79,5 +79,35 @@ describe('App.vue', () => {
                 Vue.localForage.removeItem('updateUser')
             })
         })
+
+        test('custom layout', async () => {
+            $vm = new Vue({
+                components: {
+                    App,
+                },
+                store: Store,
+                render: h => h(App, {
+                    props: {
+                        suppressTopbar: true,
+                        suppressNav: true,
+                    },
+                }, [
+                    h('div', {
+                        slot: 'custom-layout',
+                    }, 'this is a test'),
+                ]),
+            }).$mount()
+
+            Vue.localForage = localforage.createInstance({ name: 'test' })
+            Vue.localForage.setItem('updateUser', { id: 'test' })
+
+            localStorage.setItem('jwt', jwt)
+            $vm.$store.commit('universal/UPDATE_JWT')
+
+            await $vm.$store.dispatch('universal/$init').then(() => {
+                expect($vm.$el).toMatchSnapshot()
+                Vue.localForage.removeItem('updateUser')
+            })
+        })
     })
 })

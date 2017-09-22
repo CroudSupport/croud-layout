@@ -137,6 +137,16 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
 </div>
 `;
 
+exports[`App.vue Cached data + jwt custom layout 1`] = `
+<div
+  id="main-container"
+>
+  <div>
+    this is a test
+  </div>
+</div>
+`;
+
 exports[`App.vue Cached data + jwt empty template 1`] = `
 <div
   id="main-container"
