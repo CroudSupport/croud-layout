@@ -46,6 +46,9 @@ export default {
         }
 
         const instance = axios.create(options.defaults)
+        const legacy = axios.create({
+            baseURL: '/',
+        })
 
         instance.interceptors.response.use((response) => {
             response.body = response.data
@@ -53,7 +56,9 @@ export default {
         })
 
         Vue.prototype.$http = instance
+        Vue.prototype.$httpLegacy = legacy
         Vue.http = instance
+        Vue.httpLegacy = legacy
 
         const resource = (url) => {
             const axiosResource = {}

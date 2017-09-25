@@ -227,7 +227,7 @@
                 this.updateJWT().then(() => {
                     this.loading = false
                 })
-                this.$http.post('/login/auth/', { authToken: localStorage.getItem('root') }).then(() => {
+                this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') }).then(() => {
                     window.location = '/'
                 })
             },
@@ -257,7 +257,7 @@
                                 $this.loading = false
                             })
 
-                            $this.$http.post('/login/auth/', { authToken: response.data.jwt.access_token }).then(() => {
+                            $this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token }).then(() => {
                                 window.location = '/'
                             })
                         })

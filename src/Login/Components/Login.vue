@@ -324,9 +324,10 @@
                     this.updateRoot()
                     this.updateJWT()
                     this.$emit('login')
-                    // this.$http.post('/login/auth/', {
-                    //     authToken: response.data.jwt,
-                    // }).then(() => {
+                    this.$httpLegacy.post('/login/auth/', {
+                        authToken: response.data.jwt,
+                    })
+                    // .then(() => {
                     //     window.location = '/login/success/'
                     // })
                 }, () => {
@@ -357,11 +358,12 @@
                 this.loading = true
                 window.addEventListener('message', (event) => {
                     localStorage.setItem('jwt', event.data.access_token)
-                    this.$http.post('/login/auth/', {
+                    this.$httpLegacy.post('/login/auth/', {
                         authToken: event.data.access_token,
-                    }).then(() => {
-                        window.location = '/login/success/'
                     })
+                    // .then(() => {
+                    //     window.location = '/login/success/'
+                    // })
                 }, false)
 
                 window.open(`//${gateway_url}/auth/${provider}`, '_blank')
