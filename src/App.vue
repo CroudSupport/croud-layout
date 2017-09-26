@@ -10,22 +10,22 @@
     <slot v-else name="custom-layout">
         <div id="main-content">
             <div v-if="!suppressNav" id="main-navigation" class="main-navigation">
-            <div class="contained">
-                <navigation
-                :expanded="expanded"
-                :items="items"
-                >
-                </navigation>
-            </div>
+                <div class="contained">
+                    <navigation
+                    :expanded="expanded"
+                    :items="items"
+                    >
+                    </navigation>
+                </div>
             </div>
             <div :id="!suppressNav ? 'main-content-container' : ''">
-            <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
-            <h1 v-if="title" v-html="title"></h1>
-            <div id="main-content-body" v-bind:class="classList">
-                <slot name="content">
-                    <h1 class="ui heading">Test</h1>
-                </slot>
-            </div>
+                <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
+                <h1 v-if="title" v-html="title"></h1>
+                <div id="main-content-body" v-bind:class="classList">
+                    <slot name="content">
+                        <h1 class="ui heading">Test</h1>
+                    </slot>
+                </div>
             </div>
         </div>
     </slot>
