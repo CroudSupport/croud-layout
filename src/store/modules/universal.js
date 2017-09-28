@@ -91,7 +91,7 @@ export default {
             }
 
             await Vue.localForage.getItem('updateUser').then((data) => {
-                if (data) {
+                if (data && data.id) {
                     context.commit('UPDATE_USER', data)
                     context.commit('STOP_LOADING')
                 }
