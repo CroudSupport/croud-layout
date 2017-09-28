@@ -200,7 +200,7 @@
                 this.updateUser({})
                 localStorage.removeItem('jwt')
                 localStorage.removeItem('root')
-                this.$http.get('/logout')
+                this.$httpLegacy.get('/logout')
             },
             canDelete(user) {
                 if (this.org_user) return false
