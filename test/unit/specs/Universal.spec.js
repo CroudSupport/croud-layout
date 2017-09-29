@@ -132,9 +132,9 @@ describe('Universal Store Module', () => {
 
             it('should stop loading if user data is in the cache', async () => {
                 expect.assertions(1)
-                Vue.localForage = localforage.createInstance({ name: 'test' })
+                Vue.localForage = localforage.createInstance({ id: 1, name: 'test' })
 
-                Vue.localForage.setItem('updateUser', { name: 'test' })
+                Vue.localForage.setItem('updateUser', { id: '1', name: 'test' })
 
                 localStorage.setItem('jwt', jwt)
                 $store.commit('UPDATE_JWT')
