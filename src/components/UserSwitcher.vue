@@ -201,6 +201,7 @@
                 localStorage.removeItem('jwt')
                 localStorage.removeItem('root')
                 this.$httpLegacy.get('/logout')
+                window.location = '/logout'
             },
             canDelete(user) {
                 if (this.org_user) return false
