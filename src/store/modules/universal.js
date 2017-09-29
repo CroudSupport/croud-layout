@@ -113,7 +113,6 @@ export default {
                 })
                 rootStore.getItem('updateUser').then((data) => {
                     if (data) context.commit('UPDATE_ROOT_USER', data)
-                    context.commit('STOP_LOADING')
                 })
             }
         },
