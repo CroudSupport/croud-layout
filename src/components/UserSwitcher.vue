@@ -72,10 +72,6 @@
         position:absolute;
     }
 
-    .light {
-        font-size:0.9em;
-    }
-
     .logout {
         position: absolute;
         z-index: 2;
@@ -88,49 +84,46 @@
 <template>
     <div>
         <div class="switcher">
-            <div v-if="showSwitcher" ref="userSwitcher" class="ui floating labeled icon top right pointing dropdown tiny positive button">
-                <i class="exchange icon"></i>
-                <span class="text">Switch</span>
-                <div class="menu">
-                    <button class="ui button tiny logout blue" @click.stop="logout">logout</button>
-                    <div class="header">
-                        <img class="ui avatar image" :src="current_user.avatar" :data-id="current_user.id">
-                        <div class="label" v-html="current_user.name"></div>
-                    </div>
-                    <div class="divider"></div>
-                    <!-- <div class="ui icon input">
+            <croud-list-dropdown
+                v-if="showSwitcher"
+                listGetter="universal/userSwitches"
+                :headerItem="currentUser"
+                @item-selected="switchUser"
+                :loading="loading"
+                dropdownClasses="ui floating top right pointing dropdown tiny positive button"
+                >
+
+                <div slot="header-action">
+                    <button class="ui button tiny blue" @click.stop="logout">Logout</button>
+                </div>
+
+                <div slot="header-item">
+                    <croud-avatar  size="avatar" :user="currentUser" />
+                    <div class="label">{{ currentUser.name }}</div>
+                </div>
+
+                <template slot="extra-items" class="menu">
+                    <div class="ui icon transparent fluid search input">
                         <i class="search icon"></i>
                         <input type="text" placeholder="Search users...">
-                    </div> -->
-                    <div v-if="root_user.id != current_user.id" class="item">
-                        <div :data-id="root_user.id">
-                            <img class="ui avatar image" :src="root_user.avatar">
-                            <div class="label" v-html="root_user.name"></div>
+                    </div>
+                    <div v-if="rootUser.id && rootUser.id !== currentUser.id" class="item" @click="revert">
+                        <div>
+                            <croud-avatar  size="avatar" :user="rootUser" />
+                            <div class="label">{{ rootUser.name }}</div>
                         </div>
                     </div>
-                    <div v-if="org_user && org_user.id != null && (org_user.id != current_user.id) && (org_user.id != root_user.id)" class="item">
-                        <div :data-id="org_user.id">
-                            <img class="ui avatar image" :src="org_user.avatar">
-                            <div class="label" v-html="org_user.name"></div>
-                        </div>
+                    <div class="divider"></div>
+                </template>
+
+                <template slot="items" scope="scope">
+                    <div>
+                        <croud-avatar size="avatar" :user="scope.item"/>
+                        <div class="label">{{ scope.item.name }}</div>
                     </div>
-                    <div class="scrolling menu">
-                        <div class="item" v-for="(user, index) in filteredUsers" :key="user.id">
-                            <div :data-id="user.id" :data-code="user.code">
-                                <i v-if="canDelete(user)" class="remove circle icon removeUser" @click.prevent="removeUser(user, $event)"></i>
-                                <img class="ui avatar image" :src="user.avatar">
-                                <div class="label">
-                                    <span v-html="user.name"></span>
-                                    <!-- <span v-if="canDisplayUserType" class="light">{{user.type.toUpperCase()}}</span> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui inverted dimmer" :class="{active: loading}">
-                        <div class="ui text large loader">Switching User</div>
-                    </div>
-                </div>
-            </div>
+                </template>
+            </croud-list-dropdown>
+
             <button v-else class="ui button positive tiny" @click="logout">Logout</button>
         </div>
     </div>
@@ -138,8 +131,8 @@
 </template>
 
 <script>
-
-    import _ from 'lodash'
+    import CroudListDropdown from 'croud-style-guide/src/components/shared/misc/List'
+    import CroudAvatar from 'croud-style-guide/src/components/shared/misc/Avatar'
     import { mapGetters, mapActions } from 'vuex'
     import '../../semantic/src/definitions/modules/dropdown'
     import '../../semantic/src/definitions/modules/transition'
@@ -147,44 +140,26 @@
 
     export default {
 
+        components: {
+            CroudListDropdown,
+            CroudAvatar,
+        },
+
         data() {
             return {
-                org_user: 0, // Croud.user_switcher.org_user,
                 loading: false,
             }
         },
 
         computed: {
             ...mapGetters({
-                current_user: 'universal/user',
-                root_user: 'universal/rootUser',
+                currentUser: 'universal/user',
+                rootUser: 'universal/rootUser',
                 users: 'universal/userSwitches',
             }),
 
-            canDisplayUserType() {
-                if (this.current_user.type === 'client' || this.current_user.type === 'organisation') return false
-
-                return true
-            },
-
             showSwitcher() {
-                let userlen = this.users.length
-
-                if (this.root_user.sub !== this.current_user.id) {
-                    userlen += 1
-                }
-
-                if (this.org_user && this.org_user.id !== null &&
-                        ((this.org_user.id !== this.current_user.id) &&
-                        (this.org_user.id !== this.root_user.id))
-                    ) {
-                    userlen += 1
-                }
-
-                return userlen > 0
-            },
-            filteredUsers() {
-                return _.reject(this.users, user => user.id === this.current_user.id)
+                return this.users.length || this.rootUser.sub !== this.currentUser.id
             },
         },
 
@@ -196,6 +171,26 @@
                 updateJWT: 'universal/updateJWT',
             }),
 
+            switchUser(user) {
+                if (!this.rootUser.id || this.rootUser.id === this.currentUser.id) {
+                    localStorage.setItem('root', localStorage.getItem('jwt'))
+                    this.updateRootUser(this.currentUser)
+                } else if (this.rootUser.id === user.id) {
+                    return this.revert()
+                }
+
+                return this.$http.post('auth/switch-user', { user_code: user.code }).then((response) => {
+                    localStorage.setItem('jwt', response.data.jwt.access_token)
+
+                    this.updateJWT().then(() => {
+                        this.loading = false
+                    })
+
+                    this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token })
+                        .then(this.redirectAfterLogin)
+                })
+            },
+
             logout() {
                 this.updateUser({})
                 localStorage.removeItem('jwt')
@@ -203,81 +198,18 @@
                 this.$httpLegacy.get('/logout')
                 window.location = '/logout'
             },
-            canDelete(user) {
-                if (this.org_user) return false
-
-                if (this.root_user && (user.id === this.root_user.id)) return false
-
-                if (this.root_user.type === 'supercroud') return true
-
-                if (user.type === 'organisation' || user.type === 'client') return false
-
-                return true
-            },
-
-            removeUser(user, event) {
-                event.stopImmediatePropagation()
-                this.$http.get(`/login/delete-known-user/id/${user.id}`).then(() => {
-                    this.users.$remove(user)
-                })
-                this.revert()
-            },
 
             revert() {
                 localStorage.setItem('jwt', localStorage.getItem('root'))
                 this.updateJWT().then(() => {
                     this.loading = false
                 })
-                this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') }).then(() => {
-                    window.location = '/'
-                })
+                this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') })
+                    .then(this.redirectAfterLogin)
             },
 
-            buildDropdown() {
-                const $this = this
-                $(this.$refs.userSwitcher).dropdown({
-                    fullTextSearch: true,
-                    forceSelection: false,
-                    action(option) {
-                        $this.loading = true
-                        const block = $(option)
-                        const id = block.data('id')
-                        const code = block.data('code')
-
-                        if (!$this.root_user.id || $this.root_user.id === $this.current_user.id) {
-                            localStorage.setItem('root', localStorage.getItem('jwt'))
-                            $this.updateRootUser($this.current_user)
-                        } else if ($this.root_user.id === id) {
-                            return $this.revert()
-                        }
-
-                        return $this.$http.post('auth/switch-user', { user_code: code }).then((response) => {
-                            localStorage.setItem('jwt', response.data.jwt.access_token)
-
-                            $this.updateJWT().then(() => {
-                                $this.loading = false
-                            })
-
-                            $this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token }).then(() => {
-                                window.location = '/'
-                            })
-                        })
-                    },
-                })
-            },
-        },
-
-        mounted() {
-            this.buildDropdown()
-        },
-
-        watch: {
-            showSwitcher(val) {
-                if (!val) return
-
-                this.$nextTick(() => {
-                    this.buildDropdown()
-                })
+            redirectAfterLogin() {
+                window.location = '/'
             },
         },
     }
