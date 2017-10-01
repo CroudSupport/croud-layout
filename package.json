@@ -117,6 +117,9 @@
     "moduleNameMapper": {
       "@/components/(.*).$": "<rootDir>/src/components/$1.vue"
     },
+    "transformIgnorePatterns": [
+      "node_modules/(?!croud-style-guide)"
+    ],
     "setupFiles": [
       "<rootDir>/test/unit/mocks/localStorage.js"
     ]
