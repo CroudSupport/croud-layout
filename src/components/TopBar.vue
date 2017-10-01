@@ -46,4 +46,7 @@
         height: 40px;
         vertical-align: middle;
     }
+    #loggedIn .ui.thumbnail.image  img {
+        width: inherit;
+    }
 </style>
