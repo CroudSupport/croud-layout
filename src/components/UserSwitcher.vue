@@ -91,6 +91,7 @@
                 @item-selected="switchUser"
                 :loading="loading"
                 dropdownClasses="ui floating top right pointing dropdown tiny positive button"
+                :dropdownSettings="settings"
                 >
 
                 <div slot="header-action">
@@ -148,6 +149,11 @@
         data() {
             return {
                 loading: false,
+                settings: {
+                    forceSelection: false,
+                    fullTextSearch: true,
+                    action: 'nothing',
+                },
             }
         },
 
@@ -172,6 +178,7 @@
             }),
 
             switchUser(user) {
+                this.loading = true
                 if (!this.rootUser.id || this.rootUser.id === this.currentUser.id) {
                     localStorage.setItem('root', localStorage.getItem('jwt'))
                     this.updateRootUser(this.currentUser)
@@ -200,6 +207,7 @@
             },
 
             revert() {
+                this.loading = true
                 localStorage.setItem('jwt', localStorage.getItem('root'))
                 this.updateJWT().then(() => {
                     this.loading = false
