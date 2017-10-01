@@ -70,10 +70,6 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
             class="universal-list ui floating top right pointing dropdown tiny positive button"
             tabindex="0"
           >
-            <input
-              type="hidden"
-              name="dropdown"
-            />
             <span
               class="text"
             >
