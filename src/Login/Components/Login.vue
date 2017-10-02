@@ -109,7 +109,7 @@
                                 <input ref="username" type="text" name="email" placeholder="Enter your username" v-model="username" @focus="this.errors = false" @keypress.enter.prevent="focusPassword">
                             </div>
                             <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
-                                <input ref="password" type="password" name="password" placeholder="Enter your password" v-model="password" @focus="this.errors = false" @keypress.enter.prevent="check">
+                                <input ref="password" :type="!display_password ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="this.errors = false" @keypress.enter.prevent="check">
                                 <button class="toggle-button ui button" :class="{yellow: display_password}" @click.prevent="display_password = !display_password">
                                     <span v-if="display_password">Hide</span>
                                     <span v-else>Show</span>
