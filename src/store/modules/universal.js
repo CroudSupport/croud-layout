@@ -12,6 +12,7 @@ export default {
         jwt: localStorage.getItem('jwt') ? jwtDecode(localStorage.getItem('jwt')) : {},
         root: localStorage.getItem('root') ? jwtDecode(localStorage.getItem('root')) : {},
         loading: true,
+        legacyAuth: true,
     },
     mutations: {
         UPDATE_USER(state, newState) {
@@ -34,6 +35,9 @@ export default {
         },
         STOP_LOADING(state) {
             state.loading = false
+        },
+        STOP_LEGACY_AUTH(state) {
+            state.legacyAuth = false
         },
     },
     actions: {
@@ -129,6 +133,7 @@ export default {
         jwt: state => state.jwt,
         root: state => state.root,
         loading: state => state.loading,
+        legacyAuth: state => state.legacyAuth,
         effectivePermissions: (state) => {
             if (!state.permissions.global || !state.permissions.global.effective_permissions) return []
             return state.permissions.global.effective_permissions

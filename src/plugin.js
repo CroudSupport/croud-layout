@@ -9,6 +9,10 @@ export default {
         /* eslint-disable no-underscore-dangle */
         Object.keys(options.store._actions).filter(a => a.includes('$init')).forEach(a => options.store.dispatch(a, a))
 
+        if (options.noLegacyAuth) {
+            options.store.commit('universal/STOP_LEGACY_AUTH')
+        }
+
         Vue.nextTick(() => {
             /* eslint-disable */
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

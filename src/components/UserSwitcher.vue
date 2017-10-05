@@ -162,6 +162,7 @@
                 currentUser: 'universal/user',
                 rootUser: 'universal/rootUser',
                 users: 'universal/userSwitches',
+                legacyAuth: 'universal/legacyAuth',
             }),
 
             showSwitcher() {
@@ -193,8 +194,10 @@
                         this.loading = false
                     })
 
-                    this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token })
-                        .then(this.redirectAfterLogin)
+                    if (this.legacyAuth) {
+                        this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token })
+                            .then(this.redirectAfterLogin)
+                    }
                 })
             },
 
@@ -202,8 +205,10 @@
                 this.updateUser({})
                 localStorage.removeItem('jwt')
                 localStorage.removeItem('root')
-                this.$httpLegacy.get('/logout')
-                window.location = '/logout'
+                if (this.legacyAuth) {
+                    this.$httpLegacy.get('/logout')
+                    window.location = '/logout'
+                }
             },
 
             revert() {
@@ -212,8 +217,10 @@
                 this.updateJWT().then(() => {
                     this.loading = false
                 })
-                this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') })
-                    .then(this.redirectAfterLogin)
+                if (this.legacyAuth) {
+                    this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') })
+                        .then(this.redirectAfterLogin)
+                }
             },
 
             redirectAfterLogin() {

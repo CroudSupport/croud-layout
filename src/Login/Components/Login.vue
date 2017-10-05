@@ -169,7 +169,7 @@
 
 <script>
     import storage from 'localstorage'
-    import { mapActions } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         data() {
@@ -187,6 +187,10 @@
                 username: '',
             }
         },
+
+        computed: mapGetters({
+            legacyAuth: 'universal/legacyAuth',
+        }),
 
         watch: {
             view() {
@@ -324,12 +328,12 @@
                     this.updateRoot()
                     this.updateJWT()
                     this.$emit('login')
-                    this.$httpLegacy.post('/login/auth/', {
-                        authToken: response.data.jwt,
-                    })
-                    // .then(() => {
-                    //     window.location = '/login/success/'
-                    // })
+
+                    if (this.legacyAuth) {
+                        this.$httpLegacy.post('/login/auth/', {
+                            authToken: response.data.jwt,
+                        })
+                    }
                 }, () => {
                     this.loading = false
                     this.errors = true
@@ -358,12 +362,11 @@
                 this.loading = true
                 window.addEventListener('message', (event) => {
                     localStorage.setItem('jwt', event.data.access_token)
-                    this.$httpLegacy.post('/login/auth/', {
-                        authToken: event.data.access_token,
-                    })
-                    // .then(() => {
-                    //     window.location = '/login/success/'
-                    // })
+                    if (this.legacyAuth) {
+                        this.$httpLegacy.post('/login/auth/', {
+                            authToken: event.data.access_token,
+                        })
+                    }
                 }, false)
 
                 window.open(`//${gateway_url}/auth/${provider}`, '_blank')
