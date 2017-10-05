@@ -97,7 +97,6 @@ export default {
 
     mounted() {
         this.handleLogin()
-        this.$store.commit('universal/STOP_LEGACY_AUTH')
     },
 }
 </script>
