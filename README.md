@@ -29,6 +29,11 @@ Step 3: ????
 
 Step 4: Profit :)
 
+## No Legacy SSO Auth
+You can pass an additional option to disable legacy SSO auth
+```js
+Vue.use(CroudLayout, { store, noLegacyAuth: true })
+```
 ## Axios plugin
 A drop in replacement for vue-resource
 
