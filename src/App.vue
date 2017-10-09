@@ -6,7 +6,9 @@
             <img class="ui small image" src='../static/img/croud_logo_new.svg' />
         </div>
     </div>
-    <login v-else-if="!user.id"></login>
+    <slot name="login" v-else-if="!user.id">
+        <login />
+    </slot>
     <slot v-else name="custom-layout">
         <div id="main-content">
             <div v-if="!suppressNav" id="main-navigation" class="main-navigation">
