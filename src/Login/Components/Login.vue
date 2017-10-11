@@ -84,7 +84,7 @@
         name="custom-classes-transition"
         enter-active-class="animated bounceInDown"
         leave-active-class="animated fadeOutDown">
-            <div v-if="password_success && view === 'password'" id="error-message-container">
+            <div v-if="passwordSuccess && view === 'password'" id="error-message-container">
                 <div id="error-message" class="ui message inverted green secondary segment">
                     <i class="inverted close icon" @click.prevent="hidePasswordMessage"></i>
                     <div class="">We have emailed you a password reset link. Just follow the instructions provided with it to gain access to Croud Control.</div>
@@ -96,7 +96,7 @@
         name="custom-classes-transition"
         enter-active-class="animated bounceInDown"
         leave-active-class="animated fadeOutDown">
-            <div v-if="error_message" id="error-message-container">
+            <div v-if="errorMessage" id="error-message-container">
                 <div id="error-message" class="ui message inverted red secondary segment">
                     <i class="close icon" @click.prevent="hideErrorMessage"></i>
                     <div class="">Sorry, we can't find you with the details you have entered. Please try again.</div>
@@ -112,7 +112,7 @@
         name="custom-classes-transition"
         enter-active-class="animated bounceInDown"
         leave-active-class="animated fadeOutDown">
-            <div v-if="password_error" id="error-message-container">
+            <div v-if="passwordError" id="error-message-container">
                 <div id="error-message" class="ui message inverted red secondary segment">
                     <i class="close icon" @click.prevent="hidePasswordErrorMessage"></i>
                     <div class="">Sorry, we can't find you with your email address. Please try again.<br />If this continues, please email <a class="basic" href="mailto:croudsupport@croud.com">croudsupport@croud.com</a> for further assistance.</div>
@@ -138,9 +138,9 @@
                                 <input ref="username" type="text" name="email" placeholder="Enter your username" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
                             </div>
                             <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
-                                <input ref="password" :type="!display_password ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
-                                <button class="toggle-button ui button" :class="{yellow: display_password}" @click.prevent="display_password = !display_password">
-                                    <span v-if="display_password">Hide</span>
+                                <input ref="password" :type="!displayPassword ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
+                                <button class="toggle-button ui button" :class="{yellow: displayPassword}" @click.prevent="displayPassword = !displayPassword">
+                                    <span v-if="displayPassword">Hide</span>
                                     <span v-else>Show</span>
                                 </button>
                             </div>
@@ -179,7 +179,7 @@
                      <form class="ui form">
                          <p>Enter your email address and we will send you a link to reset your password</p>
                          <div class="ui field">
-                             <input ref="reminderEmail" class="animated" type="text" name="email" placeholder="Email" v-model="reminder_email">
+                             <input ref="reminderEmail" class="animated" type="text" name="email" placeholder="Email" v-model="reminderEmail">
                          </div>
                      </form>
                  </div>

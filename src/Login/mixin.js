@@ -5,13 +5,13 @@ export default {
     data() {
         return {
             password: '',
-            reminder_email: '',
-            password_success: false,
-            display_password: false,
+            reminderEmail: '',
+            passwordSuccess: false,
+            displayPassword: false,
             loading: false,
             errors: false,
-            error_message: false,
-            password_error: false,
+            errorMessage: false,
+            passwordError: false,
             remember: false,
             view: 'login',
             username: '',
@@ -24,11 +24,11 @@ export default {
 
     watch: {
         view() {
-            this.error_message = false
-            this.password_error = false
-    // this.password_success = false;
+            this.errorMessage = false
+            this.passwordError = false
+    // this.passwordSuccess = false;
         },
-        display_password() {
+        displayPassword() {
             this.$nextTick(() => {
                 this.focusPassword()
             })
@@ -36,7 +36,7 @@ export default {
 
         errors(value) {
             if (!value) {
-                this.error_message = false
+                this.errorMessage = false
         // this.hideErrorMessage()
             } else {
                 this.showErrorMessage()
@@ -83,7 +83,7 @@ export default {
             this.$refs.username.focus()
         },
 
-        display_password() {
+        displayPassword() {
             this.$nextTick(() => {
                 this.focusPassword()
             })
@@ -102,24 +102,24 @@ export default {
         },
 
         showErrorMessage() {
-            this.error_message = true
+            this.errorMessage = true
         },
 
         hideErrorMessage() {
-            this.error_message = false
+            this.errorMessage = false
         },
 
         showPasswordErrorMessage() {
-            this.password_error = true
+            this.passwordError = true
         },
 
         hidePasswordMessage() {
-            this.error_message = false
-            this.password_success = false
+            this.errorMessage = false
+            this.passwordSuccess = false
         },
 
         hidePasswordErrorMessage() {
-            this.password_error = false
+            this.passwordError = false
         },
 
         check() {
@@ -160,7 +160,7 @@ export default {
         },
 
         submitPasswordLink() {
-            if (!this.reminder_email.length) {
+            if (!this.reminderEmail.length) {
                 this.animate(this.$refs.reminderEmail, 'shake')
                 return
             }
@@ -168,7 +168,7 @@ export default {
             this.loading = true
 
             this.$http.post(`//${gateway_url}/password/email`, {
-                username: this.reminder_email,
+                username: this.reminderEmail,
             }).then((response) => {
                 if (!response.data.message) { // email doesnt exist
                     this.animate(this.$refs.reminderEmail, 'shake')
@@ -177,10 +177,10 @@ export default {
                     return
                 }
                 this.loading = false
-                this.password_success = response.data.success
+                this.passwordSuccess = response.data.success
                 this.error = false // !response.data.success;
-                this.password_error = false
-                this.reminder_email = ''
+                this.passwordError = false
+                this.reminderEmail = ''
             }, () => {
                 this.loading = false
                 this.showPasswordErrorMessage() // true;
