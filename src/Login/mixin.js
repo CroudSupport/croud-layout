@@ -169,21 +169,18 @@ export default {
 
             this.$http.post(`//${gateway_url}/password/email`, {
                 username: this.reminderEmail,
-            }).then((response) => {
-                if (!response.data.message) { // email doesnt exist
-                    this.animate(this.$refs.reminderEmail, 'shake')
-                    this.loading = false
-                    this.showPasswordErrorMessage() // true;
-                    return
-                }
+            }).then(() => {
                 this.loading = false
-                this.passwordSuccess = response.data.success
-                this.error = false // !response.data.success;
+                this.passwordSuccess = true
+                this.error = false
                 this.passwordError = false
                 this.reminderEmail = ''
             }, () => {
                 this.loading = false
-                this.showPasswordErrorMessage() // true;
+                this.passwordSuccess = true
+                this.error = false
+                this.passwordError = false
+                this.reminderEmail = ''
             })
         },
 
