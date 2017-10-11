@@ -93,54 +93,42 @@ export default {
             this.$refs.password.focus()
         },
 
-        shake() {
-            $('#form-fields-container').animateCss('shake')
+        animate(el, name, duration = 500) {
+            el.classList.add(name)
+
+            setTimeout(() => {
+                el.classList.remove(name)
+            }, duration)
         },
 
         showErrorMessage() {
             this.error_message = true
-            this.$nextTick(() => {
-                $('#error-message').animateCss('bounceInDown')
-            })
         },
 
         hideErrorMessage() {
-            $('#error-message').animateCss('fadeOutDown', () => {
-                this.error_message = false
-            })
-            setTimeout(() => {
-                this.error_message = false
-            }, 400)
+            this.error_message = false
         },
 
         showPasswordErrorMessage() {
             this.password_error = true
-            this.$nextTick(() => {
-                $('#password_error').animateCss('bounceInDown')
-            })
         },
 
         hidePasswordMessage() {
-            $('#error-message').animateCss('fadeOutDown', () => {
-                this.error_message = false
-                this.password_success = false
-            })
-            setTimeout(() => {
-                this.password_success = false
-            }, 400)
+            this.error_message = false
+            this.password_success = false
         },
 
         hidePasswordErrorMessage() {
-            $('#error-message').animateCss('fadeOutDown', () => {
-                this.password_error = false
-            })
-            setTimeout(() => {
-                this.password_error = false
-            }, 400)
+            this.password_error = false
         },
 
         check() {
             if (this.loading) return
+
+            if (!this.username.length || !this.password.length) {
+                this.animate(this.$refs.userCredFields, 'shake')
+                return
+            }
 
             this.errors = false
             this.loading = true
@@ -167,21 +155,32 @@ export default {
             }, () => {
                 this.loading = false
                 this.errors = true
-                this.shake()
+                this.animate(this.$refs.userCredFields, 'shake')
             })
         },
 
         submitPasswordLink() {
-            if (this.reminder_email === '') return
+            if (!this.reminder_email.length) {
+                this.animate(this.$refs.reminderEmail, 'shake')
+                return
+            }
 
             this.loading = true
 
             this.$http.post(`//${gateway_url}/password/email`, {
                 username: this.reminder_email,
             }).then((response) => {
+                if (!response.data.message) { // email doesnt exist
+                    this.animate(this.$refs.reminderEmail, 'shake')
+                    this.loading = false
+                    this.showPasswordErrorMessage() // true;
+                    return
+                }
                 this.loading = false
                 this.password_success = response.data.success
                 this.error = false // !response.data.success;
+                this.password_error = false
+                this.reminder_email = ''
             }, () => {
                 this.loading = false
                 this.showPasswordErrorMessage() // true;
