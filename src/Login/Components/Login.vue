@@ -87,7 +87,7 @@
             <div v-if="passwordSuccess && view === 'password'" id="error-message-container">
                 <div id="error-message" class="ui message inverted green secondary segment">
                     <i class="inverted close icon" @click.prevent="hidePasswordMessage"></i>
-                    <div class="">We have emailed you a password reset link. Just follow the instructions provided with it to gain access to Croud Control.</div>
+                    <div> {{ passwordSuccessMessage }} <br /> <span v-html="emailUs"/> </div>
                 </div>
             </div>
         </transition>
@@ -96,26 +96,13 @@
         name="custom-classes-transition"
         enter-active-class="animated bounceInDown"
         leave-active-class="animated fadeOutDown">
-            <div v-if="errorMessage" id="error-message-container">
+            <div v-if="errorMessage || passwordError" id="error-message-container">
                 <div id="error-message" class="ui message inverted red secondary segment">
                     <i class="close icon" @click.prevent="hideErrorMessage"></i>
-                    <div class="">Sorry, we can't find you with the details you have entered. Please try again.</div>
+                    <div> {{ generalError }} <br /> <span v-html="emailUs"/> </div>
                     <p>
                     <a class="ui mini inverted button" @click="view='password'">Forgot your password?</a>
                     </p>
-                </div>
-            </div>
-        </transition>
-
-
-        <transition
-        name="custom-classes-transition"
-        enter-active-class="animated bounceInDown"
-        leave-active-class="animated fadeOutDown">
-            <div v-if="passwordError" id="error-message-container">
-                <div id="error-message" class="ui message inverted red secondary segment">
-                    <i class="close icon" @click.prevent="hidePasswordErrorMessage"></i>
-                    <div class="">Sorry, we can't find you with your email address. Please try again.<br />If this continues, please email <a class="basic" href="mailto:croudsupport@croud.com">croudsupport@croud.com</a> for further assistance.</div>
                 </div>
             </div>
         </transition>
@@ -135,7 +122,7 @@
                         <div class="ui segment padded">
                             <div ref="userCredFields" class="animated">
                             <div v-bind:class="['field', {'field-error' : errors}]">
-                                <input ref="username" type="text" name="email" placeholder="Enter your username" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
+                                <input ref="username" type="text" name="email" placeholder="Enter your email address" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
                             </div>
                             <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
                                 <input ref="password" :type="!displayPassword ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
