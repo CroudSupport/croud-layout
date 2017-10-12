@@ -15,6 +15,9 @@ export default {
             remember: false,
             view: 'login',
             username: '',
+            passwordSuccessMessage: 'If your account was found we have emailed you a password reset link.',
+            generalError: 'Your email or password is incorrect. Please try again.',
+            emailUs: 'For further assistance, Please email <a class="basic" href="mailto:support@croud.com">support@croud.com</a>.',
         }
     },
 
@@ -24,10 +27,11 @@ export default {
 
     watch: {
         view() {
-            this.errorMessage = false
             this.passwordError = false
-    // this.passwordSuccess = false;
+            this.errorMessage = false
+            this.passwordSuccess = false
         },
+
         displayPassword() {
             this.$nextTick(() => {
                 this.focusPassword()
@@ -37,7 +41,6 @@ export default {
         errors(value) {
             if (!value) {
                 this.errorMessage = false
-        // this.hideErrorMessage()
             } else {
                 this.showErrorMessage()
             }
@@ -122,6 +125,14 @@ export default {
             this.passwordError = false
         },
 
+        emailResetSuccess() {
+            this.loading = false
+            this.passwordSuccess = true
+            this.error = false
+            this.passwordError = false
+            this.reminderEmail = ''
+        },
+
         check() {
             if (this.loading) return
 
@@ -164,23 +175,13 @@ export default {
                 this.animate(this.$refs.reminderEmail, 'shake')
                 return
             }
-
             this.loading = true
-
             this.$http.post(`//${gateway_url}/password/email`, {
                 username: this.reminderEmail,
             }).then(() => {
-                this.loading = false
-                this.passwordSuccess = true
-                this.error = false
-                this.passwordError = false
-                this.reminderEmail = ''
+                this.emailResetSuccess()
             }, () => {
-                this.loading = false
-                this.passwordSuccess = true
-                this.error = false
-                this.passwordError = false
-                this.reminderEmail = ''
+                this.emailResetSuccess()
             })
         },
 
