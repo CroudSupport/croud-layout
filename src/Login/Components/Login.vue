@@ -7,6 +7,7 @@
 
   #login-form {
       width: 350px;
+      margin: 0 auto;
       .logo-background,
       .ui.segments {
           margin:0 !important;
@@ -64,33 +65,47 @@
       background-color: #ffffff;
   }
 
+  #error-message-container {
+    position: fixed;
+    margin: 0 auto;
+    top: 15px;
+    left: 0;
+    right: 0;
+    width: 40%;
+    z-index: 10;
+    text-align: center;
+}
+
 </style>
 
 <template>
     <div id="login-container">
-      <div v-if="password_success" id="error-message-container">
-          <div id="error-message" class="ui message inverted green secondary segment">
-              <i class="inverted close icon" @click.prevent="hidePasswordMessage"></i>
-              <div class="">We have emailed you a password reset link. Just follow the instructions provided with it to gain access to Croud Control.</div>
-          </div>
-      </div>
+        <transition
+        name="custom-classes-transition"
+        enter-active-class="animated bounceInDown"
+        leave-active-class="animated fadeOutDown">
+            <div v-if="passwordSuccess && view === 'password'" id="error-message-container">
+                <div id="error-message" class="ui message inverted green secondary segment">
+                    <i class="inverted close icon" @click.prevent="hidePasswordMessage"></i>
+                    <div> {{ passwordSuccessMessage }} <br /> <span v-html="emailUs"/> </div>
+                </div>
+            </div>
+        </transition>
 
-      <div v-if="error_message" id="error-message-container">
-          <div id="error-message" class="ui message inverted red secondary segment">
-              <i class="close icon" @click.prevent="hideErrorMessage"></i>
-              <div class="">Sorry, we can't find you with the details you have entered. Please try again.</div>
-              <p>
-                <a class="ui mini inverted button" @click="view='password'">Forgot your password?</a>
-              </p>
-          </div>
-      </div>
-
-      <div v-if="password_error" id="error-message-container">
-          <div id="error-message" class="ui message inverted red secondary segment">
-              <i class="close icon" @click.prevent="hidePasswordErrorMessage"></i>
-              <div class="">Sorry, we can't find you with your email address. Please try again.<br />If this continues, please email <a class="basic" href="mailto:croudsupport@croud.co.uk">croudsupport@croud.co.uk</a> for further assistance.</div>
-          </div>
-      </div>
+        <transition
+        name="custom-classes-transition"
+        enter-active-class="animated bounceInDown"
+        leave-active-class="animated fadeOutDown">
+            <div v-if="errorMessage || passwordError" id="error-message-container">
+                <div id="error-message" class="ui message inverted red secondary segment">
+                    <i class="close icon" @click.prevent="hideErrorMessage"></i>
+                    <div> {{ generalError }} <br /> <span v-html="emailUs"/> </div>
+                    <p>
+                    <a class="ui mini inverted button" @click="view='password'">Forgot your password?</a>
+                    </p>
+                </div>
+            </div>
+        </transition>
 
         <div id="login-form">
             <div class="ui segments">
@@ -105,15 +120,17 @@
                 <div v-if="view == 'login'" class="ui segments login-segment">
                     <form class="ui form" id="form-fields-container">
                         <div class="ui segment padded">
+                            <div ref="userCredFields" class="animated">
                             <div v-bind:class="['field', {'field-error' : errors}]">
-                                <input ref="username" type="text" name="email" placeholder="Enter your username" v-model="username" @focus="this.errors = false" @keypress.enter.prevent="focusPassword">
+                                <input ref="username" type="text" name="email" placeholder="Enter your email address" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
                             </div>
                             <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
-                                <input ref="password" :type="!display_password ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="this.errors = false" @keypress.enter.prevent="check">
-                                <button class="toggle-button ui button" :class="{yellow: display_password}" @click.prevent="display_password = !display_password">
-                                    <span v-if="display_password">Hide</span>
+                                <input ref="password" :type="!displayPassword ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
+                                <button class="toggle-button ui button" :class="{yellow: displayPassword}" @click.prevent="displayPassword = !displayPassword">
+                                    <span v-if="displayPassword">Hide</span>
                                     <span v-else>Show</span>
                                 </button>
+                            </div>
                             </div>
                         </div>
                     </form>
@@ -149,7 +166,7 @@
                      <form class="ui form">
                          <p>Enter your email address and we will send you a link to reset your password</p>
                          <div class="ui field">
-                             <input type="text" name="email" placeholder="Email" v-model="reminder_email">
+                             <input ref="reminderEmail" class="animated" type="text" name="email" placeholder="Email" v-model="reminderEmail">
                          </div>
                      </form>
                  </div>
