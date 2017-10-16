@@ -1,4 +1,8 @@
 <style lang="scss" >
+  @import "~animate.css/source/_base";
+  @import "~animate.css/source/attention_seekers/shake";
+  @import "~animate.css/source/bouncing_entrances/bounceInDown";
+  @import "~animate.css/source/fading_exits/fadeOutDown";
 
   a.basic {
     color:#fff;
@@ -121,16 +125,16 @@
                     <form class="ui form" id="form-fields-container">
                         <div class="ui segment padded">
                             <div ref="userCredFields" class="animated">
-                            <div v-bind:class="['field', {'field-error' : errors}]">
-                                <input ref="username" type="text" name="email" placeholder="Enter your email address" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
-                            </div>
-                            <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
-                                <input ref="password" :type="!displayPassword ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
-                                <button class="toggle-button ui button" :class="{yellow: displayPassword}" @click.prevent="displayPassword = !displayPassword">
-                                    <span v-if="displayPassword">Hide</span>
-                                    <span v-else>Show</span>
-                                </button>
-                            </div>
+                                <div v-bind:class="['field', {'field-error' : errors}]">
+                                    <input ref="username" type="text" name="email" placeholder="Enter your email address" v-model="username" @focus="errors = false" @keypress.enter.prevent="focusPassword">
+                                </div>
+                                <div v-bind:class="['ui', 'action', 'input', 'fluid', {'field-error' : errors}]">
+                                    <input ref="password" :type="!displayPassword ? 'password' : 'text'" name="password" placeholder="Enter your password" :value="password" @input="password = $event.target.value"  @focus="errors = false" @keypress.enter.prevent="check">
+                                    <button class="toggle-button ui button" :class="{yellow: displayPassword}" @click.prevent="displayPassword = !displayPassword">
+                                        <span v-if="displayPassword">Hide</span>
+                                        <span v-else>Show</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
