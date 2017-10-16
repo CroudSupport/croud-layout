@@ -86,12 +86,6 @@ export default {
             this.$refs.username.focus()
         },
 
-        displayPassword() {
-            this.$nextTick(() => {
-                this.focusPassword()
-            })
-        },
-
         focusPassword() {
             this.$refs.password.focus()
         },
