@@ -13,6 +13,7 @@ export default {
         root: localStorage.getItem('root') ? jwtDecode(localStorage.getItem('root')) : {},
         loading: true,
         legacyAuth: true,
+        globalPermissionKey: '',
     },
     mutations: {
         UPDATE_USER(state, newState) {
@@ -38,6 +39,9 @@ export default {
         },
         STOP_LEGACY_AUTH(state) {
             state.legacyAuth = false
+        },
+        SET_GLOBAL_PERMISSION_KEY(state, key) {
+            state.globalPermissionKey = key
         },
     },
     actions: {
@@ -137,6 +141,10 @@ export default {
         effectivePermissions: (state) => {
             if (!state.permissions.global || !state.permissions.global.effective_permissions) return []
             return state.permissions.global.effective_permissions
+        },
+        globalPermission: (state) => {
+            if (!state.globalPermissionKey || !state.permissions.global || !state.permissions.global.effective_permissions) return true
+            return state.permissions.global.effective_permissions.indexOf(state.globalPermissionKey) !== -1
         },
     },
 
