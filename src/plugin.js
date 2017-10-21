@@ -13,6 +13,10 @@ export default {
             options.store.commit('universal/STOP_LEGACY_AUTH')
         }
 
+        if (options.globalPermission) {
+            options.store.commit('universal/SET_GLOBAL_PERMISSION_KEY', options.globalPermission)
+        }
+
         Vue.nextTick(() => {
             /* eslint-disable */
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

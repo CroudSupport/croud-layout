@@ -24,8 +24,18 @@
                 <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
                 <h1 v-if="title" v-html="title"></h1>
                 <div id="main-content-body" v-bind:class="classList">
-                    <slot name="content">
+                    <slot v-if="globalPermission" name="content">
                         <h1 class="ui heading">Test</h1>
+                    </slot>
+                    <slot v-else name="denied">
+                        <div class="ui basic very padded secondary permissions-denied segment">
+                            <div class="ui segment">
+                                <div class="ui center aligned icon header">
+                                    <i class="circular red delete icon"></i>
+                                    <strong>Sorry, you don't have access to this page...</strong>
+                                </div>
+                            </div>
+                        </div>
                     </slot>
                 </div>
             </div>
@@ -72,6 +82,7 @@ export default {
             jwt: 'universal/jwt',
             root: 'universal/root',
             loading: 'universal/loading',
+            globalPermission: 'universal/globalPermission',
         }),
     },
 
@@ -117,5 +128,11 @@ export default {
         justify-content: center;
         align-items: center;
         color: white;
+    }
+</style>
+
+<style scoped>
+    .ui.secondary.very.padded.segment.permissions-denied {
+        height: calc(100vh - 60px);
     }
 </style>
