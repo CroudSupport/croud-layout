@@ -1,11 +1,15 @@
+import VueMoment from 'vue-moment'
 import universal from './store/modules/universal'
+import notifications from './store/modules/notifications'
 import croudLayout from './App'
 
 export default {
     install(Vue, options) {
         Vue.component('croud-layout', croudLayout)
+        Vue.use(VueMoment)
 
         options.store.registerModule('universal', universal)
+        options.store.registerModule('notifications', notifications)
         /* eslint-disable no-underscore-dangle */
         Object.keys(options.store._actions).filter(a => a.includes('$init')).forEach(a => options.store.dispatch(a, a))
 

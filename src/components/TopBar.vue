@@ -8,6 +8,7 @@
                 <croud-avatar :user="user" size="mini" class="thumbnail"/>
                 <strong>{{ user.name }}</strong>
             </a>
+            <notification-icon/>
         </div>
         <div id="user_switcher">
             <switcher></switcher>
@@ -21,10 +22,11 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import CroudAvatar from 'croud-style-guide/src/components/shared/misc/Avatar'
     import ClientPicker from './ClientPicker'
     import Switcher from './UserSwitcher'
+    import NotificationIcon from './notifications/Icon'
 
 
     export default {
@@ -32,10 +34,15 @@
             user: 'universal/user',
         }),
 
+        methods: mapActions({
+            toggleNotifications: 'notifications/toggle',
+        }),
+
         components: {
             Switcher,
             ClientPicker,
             CroudAvatar,
+            NotificationIcon,
         },
     }
 </script>

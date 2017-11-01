@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueSemantic from 'croud-vue-semantic'
+import VueMoment from 'vue-moment'
 
 import App from './App'
 import store from './store'
@@ -12,6 +13,7 @@ import '../semantic/dist/semantic.min.css'
 
 Vue.config.productionTip = false
 Vue.use(VueSemantic)
+Vue.use(VueMoment)
 
 /* eslint-disable no-new */
 new Vue({
