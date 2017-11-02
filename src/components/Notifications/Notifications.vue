@@ -43,7 +43,7 @@
         computed: mapGetters({
             notifications: 'notifications/all',
             canLoadMore: 'notifications/more',
-            jwt: 'jwt/data',
+            jwt: 'universal/jwt',
         }),
 
         methods: {

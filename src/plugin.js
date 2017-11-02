@@ -1,7 +1,12 @@
 import VueMoment from 'vue-moment'
+import VueEcho from 'vue-echo'
+
 import universal from './store/modules/universal'
 import notifications from './store/modules/notifications'
+
 import croudLayout from './App'
+
+window.io = require('socket.io-client')
 
 export default {
     install(Vue, options) {
