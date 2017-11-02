@@ -12,6 +12,15 @@ export default {
     install(Vue, options) {
         Vue.component('croud-layout', croudLayout)
         Vue.use(VueMoment)
+        Vue.use(VueEcho, {
+            broadcaster: 'socket.io',
+            host: `//${node_gateway_url}`,
+            auth: {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                },
+            },
+        })
 
         options.store.registerModule('universal', universal)
         options.store.registerModule('notifications', notifications)
