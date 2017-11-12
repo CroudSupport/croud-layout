@@ -1,11 +1,29 @@
+import VueMoment from 'vue-moment'
+import VueEcho from 'vue-echo'
+
 import universal from './store/modules/universal'
+import notifications from './store/modules/notifications'
+
 import croudLayout from './App'
+
+window.io = require('socket.io-client')
 
 export default {
     install(Vue, options) {
         Vue.component('croud-layout', croudLayout)
+        Vue.use(VueMoment)
+        Vue.use(VueEcho, {
+            broadcaster: 'socket.io',
+            host: `//${node_gateway_url}`,
+            auth: {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                },
+            },
+        })
 
         options.store.registerModule('universal', universal)
+        options.store.registerModule('notifications', notifications)
         /* eslint-disable no-underscore-dangle */
         Object.keys(options.store._actions).filter(a => a.includes('$init')).forEach(a => options.store.dispatch(a, a))
 

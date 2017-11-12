@@ -22,7 +22,10 @@
     "localstorage": "git+https://github.com/CroudSupport/localstorage.git",
     "lodash": "^4.17.4",
     "qs": "^6.5.0",
-    "url-template": "^2.0.8"
+    "socket.io-client": "^2.0.4",
+    "url-template": "^2.0.8",
+    "vue-echo": "^1.0.1",
+    "vue-moment": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

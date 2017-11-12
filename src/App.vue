@@ -24,6 +24,7 @@
                 <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
                 <h1 v-if="title" v-html="title"></h1>
                 <div id="main-content-body" v-bind:class="classList">
+                    <notifications-sidebar/>
                     <slot v-if="globalPermission" name="content">
                         <h1 class="ui heading">Test</h1>
                     </slot>
@@ -46,12 +47,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
+import NotificationsSidebar from './components/notifications/Sidebar'
 import TopBar from './components/TopBar'
 import Navigation from './Navigation/App'
 import Login from './Login/App'
 
 export default {
-    components: { TopBar, Navigation, Login },
+    components: { TopBar, Navigation, Login, NotificationsSidebar },
     props: {
         title: {},
         flush: {
@@ -92,12 +94,15 @@ export default {
             updatePermissions: 'universal/updatePermissions',
             updateUserSwitches: 'universal/updateUserSwitches',
             authenticate: 'universal/auth',
+            loadNotifications: 'notifications/load',
         }),
 
         handleLogin() {
             if (!this.jwt.sub) return
 
-            this.authenticate()
+            this.authenticate().then(() => {
+                this.loadNotifications()
+            })
         },
     },
 
