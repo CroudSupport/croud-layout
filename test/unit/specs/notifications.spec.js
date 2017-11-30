@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import _ from 'lodash'
-// import localforage from 'localforage'
-// import axios from 'axios'
 
 import Notifications from '../../../src/store/modules/notifications'
 
