@@ -10,14 +10,10 @@
         <login />
     </slot>
     <slot v-else name="custom-layout">
-        <div id="main-content">
+        <div id="main-content" :class="{collapsed: !expanded}">
             <div v-if="!suppressNav" id="main-navigation" class="main-navigation">
                 <div class="contained">
-                    <navigation
-                    :expanded="expanded"
-                    :items="items"
-                    >
-                    </navigation>
+                    <navigation />
                 </div>
             </div>
             <div :id="!suppressNav ? 'main-content-container' : ''">
@@ -49,7 +45,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 import NotificationsSidebar from './components/notifications/Sidebar'
 import TopBar from './components/TopBar'
-import Navigation from './Navigation/App'
+import Navigation from './components/navigation/Navigation'
 import Login from './Login/App'
 
 export default {
@@ -85,6 +81,7 @@ export default {
             root: 'universal/root',
             loading: 'universal/loading',
             globalPermission: 'universal/globalPermission',
+            expanded: 'universal/expandedNav',
         }),
     },
 
@@ -104,13 +101,6 @@ export default {
                 this.loadNotifications()
             })
         },
-    },
-
-    data() {
-        return {
-            items: [],
-            expanded: false,
-        }
     },
 
     mounted() {
