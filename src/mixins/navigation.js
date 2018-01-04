@@ -117,22 +117,22 @@ export default {
                     {
                         label: 'Datorama',
                         uri: 'https://performance.croudcontrol.com',
-                        icon: 'external-link datorama-link datorama icon',
-
+                        icon: 'datorama icon',
+                        class: 'external-link datorama-link',
                     },
 
                     {
                         label: 'Schoox',
                         uri: 'https://www.schoox.com/login.php',
-                        icon: 'external-link schoox-link schoox icon',
-
+                        icon: 'schoox icon',
+                        class: 'external-link schoox-link',
                     },
 
                     {
                         label: 'Croud HR',
                         uri: 'https://croud.peoplehr.net',
-                        icon: 'external-link peoplehr-link peoplehr icon icon',
-
+                        icon: 'peoplehr icon icon',
+                        class: 'external-link peoplehr-link',
                     },
                 ]
             }

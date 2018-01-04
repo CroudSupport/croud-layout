@@ -355,17 +355,20 @@ Array [
     "uri": "/user/account",
   },
   Object {
-    "icon": "external-link datorama-link datorama icon",
+    "class": "external-link datorama-link",
+    "icon": "datorama icon",
     "label": "Datorama",
     "uri": "https://performance.croudcontrol.com",
   },
   Object {
-    "icon": "external-link schoox-link schoox icon",
+    "class": "external-link schoox-link",
+    "icon": "schoox icon",
     "label": "Schoox",
     "uri": "https://www.schoox.com/login.php",
   },
   Object {
-    "icon": "external-link peoplehr-link peoplehr icon icon",
+    "class": "external-link peoplehr-link",
+    "icon": "peoplehr icon icon",
     "label": "Croud HR",
     "uri": "https://croud.peoplehr.net",
   },
