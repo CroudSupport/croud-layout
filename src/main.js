@@ -8,6 +8,7 @@ import VueEcho from 'vue-echo'
 import App from './App'
 import store from './store'
 import axios from './axios'
+import telemetry from './telemetry'
 
 import '../semantic/dist/semantic.min'
 import '../semantic/dist/semantic.min.css'
@@ -26,6 +27,7 @@ new Vue({
     store,
     created() {
         Vue.use(axios, { setCroudDefaults: true })
+        Vue.use(telemetry)
         Vue.use(VueEcho, {
             broadcaster: 'socket.io',
             host: `//${node_gateway_url}`,
