@@ -14,7 +14,7 @@ export default {
         Vue.use(VueMoment)
         Vue.use(VueEcho, {
             broadcaster: 'socket.io',
-            host: `//${node_gateway_url}`,
+            host: `${node_gateway_url.includes('https://') ? '' : '//'}${node_gateway_url}`,
             auth: {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
