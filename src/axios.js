@@ -40,7 +40,7 @@ const buildRequest = (url, action, args) => {
 export default {
     install(vue, options = {}) {
         if (options.setCroudDefaults) {
-            axios.defaults.baseURL = `//${gateway_url}`
+            axios.defaults.baseURL = `${gateway_url.includes('https://') ? '' : '//'}${gateway_url}`
             axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('jwt')}`
             axios.defaults.paramsSerializer = params => qs.stringify(params, { arrayFormat: 'brackets' })
         }
