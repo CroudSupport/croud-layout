@@ -119,7 +119,9 @@
 
                 <template slot="items" scope="scope">
                     <div>
-                        <croud-avatar size="avatar" :user="scope.item"/>
+                        <lazy-load>
+                            <croud-avatar size="avatar" :user="scope.item" v-if="clicked"/>
+                        </lazy-load>
                         <div class="label">{{ scope.item.name }}</div>
                     </div>
                 </template>
@@ -132,6 +134,7 @@
 </template>
 
 <script>
+    import LazyLoad from 'croud-style-guide/src/components/shared/hoc/LazyLoad'
     import CroudListDropdown from 'croud-style-guide/src/components/shared/misc/List'
     import CroudAvatar from 'croud-style-guide/src/components/shared/misc/Avatar'
     import { mapGetters, mapActions } from 'vuex'
@@ -144,15 +147,20 @@
         components: {
             CroudListDropdown,
             CroudAvatar,
+            LazyLoad,
         },
 
         data() {
             return {
+                clicked: false,
                 loading: false,
                 settings: {
                     forceSelection: false,
                     fullTextSearch: true,
                     action: 'nothing',
+                    onShow: () => {
+                        this.clicked = true
+                    },
                 },
             }
         },
