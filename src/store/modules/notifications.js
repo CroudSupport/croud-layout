@@ -25,7 +25,7 @@ export default {
         updateNotifications: (context, state) => context.commit('UPDATE_NOTIFICATIONS', state),
         toggle: context => context.commit('TOGGLE_SHOW'),
         load(context) {
-            Vue.http.get('api/notification', {
+            return Vue.http.get('api/notification', {
                 params: {
                     per_page: context.state.meta.per_page,
                 },
@@ -51,9 +51,7 @@ export default {
         },
 
         markAllRead(context) {
-            Vue.http.post('api/notification/read-all').finally(() => {
-                context.dispatch('load')
-            })
+            return Vue.http.post('api/notification/read-all').then(() => context.dispatch('load'))
         },
 
         newMessage(context, state) {
