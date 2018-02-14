@@ -62,7 +62,7 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
         class="notification-icon"
       >
         <i
-          class="big white bell link icon"
+          class="white bell link icon"
         />
         <span
           class="ui tiny circular floating yellow label"
