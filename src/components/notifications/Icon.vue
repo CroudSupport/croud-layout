@@ -1,6 +1,6 @@
 <template>
     <span class="notification-icon">
-        <i class="big white bell link icon" @click="toggleNotifications"></i>
+        <i class="white bell link icon" @click="toggleNotifications"></i>
         <span class="ui tiny circular floating yellow label" :class="{pulse: shouldPulse}">{{ count }}</span>
     </span>
 </template>
@@ -42,6 +42,10 @@
     .notification-icon {
         position: relative;
         margin-left: 2em;
+
+        .link.icon {
+            font-size: 1.8em;
+        }
     }
 
     .pulse {

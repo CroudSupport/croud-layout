@@ -62,7 +62,7 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
         class="notification-icon"
       >
         <i
-          class="big white bell link icon"
+          class="white bell link icon"
         />
         <span
           class="ui tiny circular floating yellow label"
@@ -204,7 +204,7 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
     </div>
   </div>
   <div
-    class=""
+    class="collapsed"
     id="main-content"
   >
     <div
@@ -313,7 +313,7 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
 >
   <!--  -->
   <div
-    class=""
+    class="collapsed"
     id="main-content"
   >
     <!--  -->

@@ -14,6 +14,7 @@ export default {
         loading: true,
         legacyAuth: true,
         globalPermissionKey: '',
+        expandedNav: false,
     },
     mutations: {
         UPDATE_USER(state, newState) {
@@ -42,6 +43,9 @@ export default {
         },
         SET_GLOBAL_PERMISSION_KEY(state, key) {
             state.globalPermissionKey = key
+        },
+        EXPAND_NAV(state, expand) {
+            state.expandedNav = expand
         },
     },
     actions: {
@@ -146,6 +150,7 @@ export default {
             if (!state.globalPermissionKey || !state.permissions.global || !state.permissions.global.effective_permissions) return true
             return state.permissions.global.effective_permissions.indexOf(state.globalPermissionKey) !== -1
         },
+        expandedNav: state => state.expandedNav,
     },
 
     namespaced: true,

@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation mixin Base items array should produce base SC menu 1`] = `
+Array [
+  Object {
+    "icon": "dashboard icon",
+    "label": "Dashboard",
+    "uri": "/",
+  },
+  Object {
+    "icon": "paw icon",
+    "label": "Bearhug",
+    "permission": "menu.dashboard.read",
+    "uri": "/bearhug/index/standalone",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "label": "My Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/owned/",
+      },
+      Object {
+        "label": "Available Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/available/",
+      },
+      Object {
+        "label": "Review Submissions",
+        "permission": "academy.submission.manage",
+        "uri": "/academy/assessment/",
+      },
+      Object {
+        "label": "Courses",
+        "permission": "academy.course.manage",
+        "uri": "/academy/course/",
+      },
+      Object {
+        "label": "Modules",
+        "permission": "academy.modules.manage",
+        "uri": "/academy/modules/",
+      },
+      Object {
+        "label": "Test",
+        "permission": "academy.survey.manage",
+        "uri": "/survey/",
+      },
+      Object {
+        "label": "Qualifications",
+        "permission": "academy.qualification.manage",
+        "uri": "/academy/qualification/",
+      },
+      Object {
+        "label": "Skillsets",
+        "permission": "academy.skillset.manage",
+        "uri": "/academy/skillset/",
+      },
+    ],
+    "expanded": false,
+    "icon": "university icon",
+    "label": "Croud Academy",
+    "permission": "menu.academy.read",
+    "uri": "/academy/",
+  },
+  Object {
+    "icon": "users icon",
+    "label": "User Management",
+    "permission": "menu.manageUsers.read",
+    "uri": "/users/manager",
+  },
+  Object {
+    "icon": "help circle icon",
+    "label": "Knowledge Base",
+    "permission": "menu.knowledgebase.read",
+    "uri": "/knowledge-base/",
+  },
+  Object {
+    "icon": "money icon",
+    "label": "Finance &amp; Invoicing",
+    "permission": "menu.finance.read",
+    "uri": "/admin/finance",
+  },
+  Object {
+    "icon": "bar chart icon",
+    "label": "Reporting",
+    "permission": "reports.reports.report",
+    "uri": "/reporting/index/",
+  },
+  Object {
+    "icon": "settings icon",
+    "label": "System Settings",
+    "permission": "menu.system.read",
+    "uri": "/default/system/index",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+  Object {
+    "icon": "help circle outline icon",
+    "label": "Help Centre",
+    "uri": "https://croud.freshdesk.com/support/solutions",
+  },
+]
+`;
+
+exports[`Navigation mixin Base items array should produce base croudie menu 1`] = `
+Array [
+  Object {
+    "icon": "dashboard icon",
+    "label": "Dashboard",
+    "uri": "/",
+  },
+  Object {
+    "icon": "paw icon",
+    "label": "Bearhug",
+    "permission": "menu.dashboard.read",
+    "uri": "/bearhug/index/standalone",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "label": "My Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/owned/",
+      },
+      Object {
+        "label": "Available Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/available/",
+      },
+      Object {
+        "label": "Review Submissions",
+        "permission": "academy.submission.manage",
+        "uri": "/academy/assessment/",
+      },
+      Object {
+        "label": "Courses",
+        "permission": "academy.course.manage",
+        "uri": "/academy/course/",
+      },
+      Object {
+        "label": "Modules",
+        "permission": "academy.modules.manage",
+        "uri": "/academy/modules/",
+      },
+      Object {
+        "label": "Test",
+        "permission": "academy.survey.manage",
+        "uri": "/survey/",
+      },
+      Object {
+        "label": "Qualifications",
+        "permission": "academy.qualification.manage",
+        "uri": "/academy/qualification/",
+      },
+      Object {
+        "label": "Skillsets",
+        "permission": "academy.skillset.manage",
+        "uri": "/academy/skillset/",
+      },
+    ],
+    "expanded": false,
+    "icon": "university icon",
+    "label": "Croud Academy",
+    "permission": "menu.academy.read",
+    "uri": "/academy/",
+  },
+  Object {
+    "icon": "users icon",
+    "label": "User Management",
+    "permission": "menu.manageUsers.read",
+    "uri": "/users/manager",
+  },
+  Object {
+    "icon": "help circle icon",
+    "label": "Knowledge Base",
+    "permission": "menu.knowledgebase.read",
+    "uri": "/knowledge-base/",
+  },
+  Object {
+    "icon": "money icon",
+    "label": "Finance &amp; Invoicing",
+    "permission": "menu.finance.read",
+    "uri": "/admin/finance",
+  },
+  Object {
+    "icon": "bar chart icon",
+    "label": "Reporting",
+    "permission": "reports.reports.report",
+    "uri": "/reporting/index/",
+  },
+  Object {
+    "icon": "settings icon",
+    "label": "System Settings",
+    "permission": "menu.system.read",
+    "uri": "/default/system/index",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+  Object {
+    "icon": "help circle outline icon",
+    "label": "Help Centre",
+    "uri": "https://croud.freshdesk.com/support/solutions",
+  },
+]
+`;
+
+exports[`Navigation mixin Base items array should produce base onboarding croudie menu 1`] = `
+Array [
+  Object {
+    "label": "My Academy Courses",
+    "permission": "menu.academy.read",
+    "uri": "/academy/course/owned/",
+  },
+  Object {
+    "label": "Available Academy Courses",
+    "permission": "menu.academy.read",
+    "uri": "/academy/course/owned/",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+]
+`;
+
+exports[`Navigation mixin Filtered item array Croudie menu should produce menu 1`] = `
+Array [
+  Object {
+    "icon": "dashboard icon",
+    "label": "Dashboard",
+    "uri": "/",
+  },
+  Object {
+    "icon": "paw icon",
+    "label": "Bearhug",
+    "permission": "menu.dashboard.read",
+    "uri": "/bearhug/index/standalone",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "label": "My Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/owned/",
+      },
+      Object {
+        "label": "Available Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/available/",
+      },
+      Object {
+        "label": "Review Submissions",
+        "permission": "academy.submission.manage",
+        "uri": "/academy/assessment/",
+      },
+    ],
+    "expanded": false,
+    "icon": "university icon",
+    "label": "Croud Academy",
+    "permission": "menu.academy.read",
+    "uri": "/academy/",
+  },
+  Object {
+    "icon": "users icon",
+    "label": "User Management",
+    "permission": "menu.manageUsers.read",
+    "uri": "/users/manager",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+  Object {
+    "icon": "help circle outline icon",
+    "label": "Help Centre",
+    "uri": "https://croud.freshdesk.com/support/solutions",
+  },
+]
+`;
+
+exports[`Navigation mixin Filtered item array Onboarding Croudie menu should produce menu 1`] = `
+Array [
+  Object {
+    "label": "My Academy Courses",
+    "permission": "menu.academy.read",
+    "uri": "/academy/course/owned/",
+  },
+  Object {
+    "label": "Available Academy Courses",
+    "permission": "menu.academy.read",
+    "uri": "/academy/course/owned/",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+]
+`;
+
+exports[`Navigation mixin Filtered item array SC menu should produce menu 1`] = `
+Array [
+  Object {
+    "icon": "dashboard icon",
+    "label": "Dashboard",
+    "uri": "/",
+  },
+  Object {
+    "icon": "paw icon",
+    "label": "Bearhug",
+    "permission": "menu.dashboard.read",
+    "uri": "/bearhug/index/standalone",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "label": "My Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/owned/",
+      },
+      Object {
+        "label": "Available Courses",
+        "permission": "menu.academy.read",
+        "uri": "/academy/course/available/",
+      },
+      Object {
+        "label": "Review Submissions",
+        "permission": "academy.submission.manage",
+        "uri": "/academy/assessment/",
+      },
+    ],
+    "expanded": false,
+    "icon": "university icon",
+    "label": "Croud Academy",
+    "permission": "menu.academy.read",
+    "uri": "/academy/",
+  },
+  Object {
+    "icon": "users icon",
+    "label": "User Management",
+    "permission": "menu.manageUsers.read",
+    "uri": "/users/manager",
+  },
+  Object {
+    "icon": "user icon",
+    "label": "My Details",
+    "uri": "/user/account",
+  },
+  Object {
+    "class": "external-link datorama-link",
+    "icon": "datorama icon",
+    "label": "Datorama",
+    "uri": "https://performance.croudcontrol.com",
+  },
+  Object {
+    "class": "external-link schoox-link",
+    "icon": "schoox icon",
+    "label": "Schoox",
+    "uri": "https://www.schoox.com/login.php",
+  },
+  Object {
+    "class": "external-link peoplehr-link",
+    "icon": "peoplehr icon icon",
+    "label": "Croud HR",
+    "uri": "https://croud.peoplehr.net",
+  },
+]
+`;

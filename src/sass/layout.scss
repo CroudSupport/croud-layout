@@ -145,6 +145,45 @@ h2.heading {
         text-align: center;
         width: 200px;
       }
+      a.external-link {
+        border: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 41px;
+        margin: 0;
+        i {
+            display: none;
+        }
+        span {
+            display: none;
+        }
+      }
+      a.datorama-link {
+        background-image: url($cdnUrl + '/logos/datorama.svg');
+        margin-top: 15px;
+      }
+      a.datorama-link:hover {
+        background-image: url($cdnUrl + '/logos/datorama_hover.svg');
+      }
+      a.schoox-link {
+        background-image: url($cdnUrl + '/logos/schoox.svg');
+        background-size: cover;
+        background-position-x: 52px;
+        background-position-y: -2px;
+      }
+      a.schoox-link:hover {
+        background-image: url($cdnUrl + '/logos/schoox_hover.svg');
+      }
+      a.peoplehr-link {
+        background-image: url($cdnUrl + '/logos/peoplehr.svg');
+        background-position-x: 57px;
+        background-position-y: 3px;
+      }
+      a.peoplehr-link:hover {
+        background-image: url($cdnUrl + '/logos/peoplehr_hover.svg');
+      }
       .navigation-block {
         height: 100%;
         background: $darkGrey
@@ -182,6 +221,53 @@ h2.heading {
         margin-left: 55px;
       }
       #main-navigation {
+        a.external-link {
+            background-image: none;
+            border: inherit;
+            min-height: 50px;
+            margin-left: 21px;
+            i {
+                display: block;
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 38px;
+                height: 50px;
+                margin-right: 0;
+                position: relative;
+                left: 4px;
+            }
+            span {
+                display: none;
+            }
+        }
+        a.datorama-link i {
+            background-image: url($cdnUrl + '/icons/datorama.svg');
+            height: 41px;
+            left: 8px;
+        }
+        a.datorama-link i:hover {
+            background-image: url($cdnUrl + '/icons/datorama_hover.svg');
+        }
+        a.schoox-link {
+            margin-top: 6px;
+            i {
+                background-image: url($cdnUrl + '/icons/schoox.svg');
+                height: 31px;
+                left: 9px;
+            }
+        }
+        a.schoox-link i:hover {
+            background-image: url($cdnUrl + '/icons/schoox_hover.svg');
+        }
+        a.peoplehr-link i {
+            left: 9px;
+            height: 27px;
+            background-image: url($cdnUrl + '/icons/peoplehr.svg');
+            background-size: contain;
+        }
+        a.peoplehr-link i:hover {
+            background-image: url($cdnUrl + '/icons/peoplehr_hover.svg');
+        }
         margin-left: -145px;
         span {
           transition: opacity .25s ease-in-out;
