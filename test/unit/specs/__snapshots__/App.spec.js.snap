@@ -225,6 +225,11 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
         id="main-content-body"
         class="flush-body without-heading"
       >
+        <h1
+          class="ui heading"
+        >
+          Test
+        </h1>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
@@ -283,11 +288,6 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
             </div>
           </div>
         </div>
-        <h1
-          class="ui heading"
-        >
-          Test
-        </h1>
       </div>
     </div>
   </div>
@@ -325,6 +325,11 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
         id="main-content-body"
         class="flush-body without-heading"
       >
+        <h1
+          class="ui heading"
+        >
+          Test
+        </h1>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
@@ -383,11 +388,6 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
             </div>
           </div>
         </div>
-        <h1
-          class="ui heading"
-        >
-          Test
-        </h1>
       </div>
     </div>
   </div>
