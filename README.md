@@ -34,6 +34,45 @@ You can pass an additional option to disable legacy SSO auth
 ```js
 Vue.use(CroudLayout, { store, noLegacyAuth: true })
 ```
+
+## il8n
+croud-layout uses a translation first approach to it's text declaration and requires that you add some extra config to your project before using this plugin.
+
+We use the [vue-il8n](https://github.com/kazupon/vue-i18n/) and you can find their docs [here](https://kazupon.github.io/vue-i18n/en/)
+
+### Basic usage
+This package includes a translation factory which can be easily added to your project.
+```js
+/* Main.js */
+...
+import { translationFactory } from 'croud-layout/src/translation'
+...
+
+const i18n = translationFactory()
+new Vue({
+    i18n,
+    ...
+})
+```
+
+### Package translation
+By default, the translation factory will load a base set of translations. You can pass in additional translations as the first argument of the translation factory.
+
+```js
+const i18n = translationFactory({
+    en: {
+        custom: {
+            test: 'test string',
+        },
+    },
+})
+```
+
+### Set locale
+You can set the locale with the second argument of the translation factory.
+```js
+const i18n = translationFactory({}, 'ja')
+```
 ## Axios plugin
 A drop in replacement for vue-resource
 
