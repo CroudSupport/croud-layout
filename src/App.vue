@@ -101,10 +101,25 @@ export default {
                 this.loadNotifications()
             })
         },
+
+        onDisconnect() {
+            const diconnected = this.$toasted.error('Connection lost refresh page', { duration: 0 })
+
+            this.$echo.connector.socket.on('connect', () => {
+                this.$toasted.success('Web socket reconnected')
+                diconnected.goAway(0)
+
+                this.$echo.connector.socket.off('connect')
+                this.$echo.connector.socket.on('disconnect', this.onDisconnect)
+            })
+
+            this.$echo.connector.socket.off('disconnect')
+        },
     },
 
-    mounted() {
+    created() {
         this.handleLogin()
+        this.$echo.connector.socket.on('disconnect', this.onDisconnect)
     },
 }
 </script>
