@@ -5,6 +5,9 @@ import VueSemantic from 'croud-vue-semantic'
 import VueMoment from 'vue-moment'
 import VueEcho from 'vue-echo'
 import VueI18n from 'vue-i18n'
+import Toasted from 'vue-toasted'
+
+import 'croud-style-guide/src/components/shared/forms/toast/themes/croudToastTheme.scss'
 
 import App from './App'
 import store from './store'
@@ -20,6 +23,12 @@ Vue.config.productionTip = false
 Vue.use(VueSemantic)
 Vue.use(VueMoment)
 Vue.use(VueI18n)
+Vue.use(Toasted, {
+    fullWidth: true,
+    theme: 'croud',
+    duration: 2500,
+    position: 'top-center',
+})
 
 const i18n = new VueI18n({
     locale: 'en',

@@ -1,5 +1,8 @@
 import VueMoment from 'vue-moment'
 import VueEcho from 'vue-echo'
+import Toasted from 'vue-toasted'
+
+import 'croud-style-guide/src/components/shared/forms/toast/themes/croudToastTheme.scss'
 
 import universal from './store/modules/universal'
 import notifications from './store/modules/notifications'
@@ -20,6 +23,13 @@ export default {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 },
             },
+        })
+
+        Vue.use(Toasted, {
+            fullWidth: true,
+            theme: 'croud',
+            duration: 2500,
+            position: 'top-center',
         })
 
         options.store.registerModule('universal', universal)
