@@ -36,7 +36,7 @@ Vue.use(CroudLayout, { store, noLegacyAuth: true })
 ```
 
 ## il8n
-croud-layout uses a translation first approach to it's text declaration and requires that you add some extra config to your project before using this plugin.
+croud-layout uses a translation first approach to its text declaration and requires that you add some extra config to your project before using this plugin.
 
 We use the [vue-il8n](https://github.com/kazupon/vue-i18n/) and you can find their docs [here](https://kazupon.github.io/vue-i18n/en/)
 
