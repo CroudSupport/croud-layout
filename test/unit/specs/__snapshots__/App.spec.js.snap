@@ -230,6 +230,17 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
         >
           Test
         </h1>
+        <semantic-modal
+          size="small"
+          settings="[object Object]"
+        >
+          <div
+            class="ui center aligned basic segment"
+          >
+            <div />
+          </div>
+          <!--  -->
+        </semantic-modal>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
@@ -330,6 +341,17 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
         >
           Test
         </h1>
+        <semantic-modal
+          size="small"
+          settings="[object Object]"
+        >
+          <div
+            class="ui center aligned basic segment"
+          >
+            <div />
+          </div>
+          <!--  -->
+        </semantic-modal>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
