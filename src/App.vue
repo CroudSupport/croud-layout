@@ -20,7 +20,6 @@
                 <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
                 <h1 v-if="title" v-html="title"></h1>
                 <div id="main-content-body" v-bind:class="classList">
-                    <notifications-sidebar/>
                     <slot v-if="globalPermission" name="content">
                         <h1 class="ui heading">{{ $t('message.hello') }}</h1>
                     </slot>
@@ -34,6 +33,7 @@
                             </div>
                         </div>
                     </slot>
+                    <notifications-sidebar/>
                 </div>
             </div>
         </div>
