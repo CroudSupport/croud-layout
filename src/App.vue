@@ -21,7 +21,7 @@
                 <h1 v-if="title" v-html="title"></h1>
                 <div id="main-content-body" v-bind:class="classList">
                     <slot v-if="globalPermission" name="content">
-                        <h1 class="ui heading">{{ $t('message.hello') }}</h1>
+                        <h1 class="ui heading">Test</h1>
                     </slot>
                     <slot v-else name="denied">
                         <div class="ui basic very padded secondary permissions-denied segment">
@@ -33,6 +33,7 @@
                             </div>
                         </div>
                     </slot>
+                    <croud-confirm ref="confirmation"/>
                     <notifications-sidebar/>
                 </div>
             </div>
@@ -41,7 +42,10 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
+
+import CroudConfirm from 'croud-style-guide/src/components/shared/misc/Confirm'
 
 import NotificationsSidebar from './components/notifications/Sidebar'
 import TopBar from './components/TopBar'
@@ -49,16 +53,28 @@ import Navigation from './components/navigation/Navigation'
 import Login from './Login/App'
 
 export default {
-    components: { TopBar, Navigation, Login, NotificationsSidebar },
+    components: {
+        TopBar,
+        Navigation,
+        Login,
+        NotificationsSidebar,
+        CroudConfirm,
+    },
+
     props: {
-        title: {},
+        title: {
+            type: String,
+        },
         flush: {
+            type: Boolean,
             default: true,
         },
         suppressNav: {
+            type: Boolean,
             default: false,
         },
         suppressTopbar: {
+            type: Boolean,
             default: false,
         },
     },
@@ -105,6 +121,8 @@ export default {
 
     mounted() {
         this.handleLogin()
+        Vue.confirm = this.$refs.confirmation.confirm
+        Vue.prototype.$confirm = this.$refs.confirmation.confirm
     },
 }
 </script>
