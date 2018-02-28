@@ -103,17 +103,34 @@ export default {
         },
 
         onDisconnect() {
-            const diconnected = this.$toasted.error('Connection lost refresh page', { duration: 0 })
-
-            this.$echo.connector.socket.on('connect', () => {
-                this.$toasted.success('Web socket reconnected')
-                diconnected.goAway(0)
-
-                this.$echo.connector.socket.off('connect')
-                this.$echo.connector.socket.on('disconnect', this.onDisconnect)
+            // const diconnected = this.$toasted.error('Connection lost refresh page', { duration: 0 })
+            const diconnectedTime = window.performance.now()
+            this.$http.post('/api/analytics', {
+                type: 'websocket',
+                data: {
+                    event: 'disconnected',
+                    time: diconnectedTime,
+                },
             })
 
+            this.$echo.connector.socket.on('connect', () => this.onReconnect(diconnectedTime))
             this.$echo.connector.socket.off('disconnect')
+        },
+
+        onReconnect(diconnectedTime) {
+            // this.$toasted.success('Web socket reconnected')
+            // diconnected.goAway(0)
+
+            this.$http.post('/api/analytics', {
+                type: 'websocket',
+                data: {
+                    event: 'reconnected',
+                    since: window.performance.now() - diconnectedTime,
+                },
+            })
+
+            this.$echo.connector.socket.on('disconnect', this.onDisconnect)
+            this.$echo.connector.socket.off('connect')
         },
     },
 
