@@ -230,17 +230,6 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
         >
           Test
         </h1>
-        <semantic-modal
-          size="small"
-          settings="[object Object]"
-        >
-          <div
-            class="ui center aligned basic segment"
-          >
-            <div />
-          </div>
-          <!--  -->
-        </semantic-modal>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
@@ -302,6 +291,17 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
       </div>
     </div>
   </div>
+  <semantic-modal
+    size="small"
+    settings="[object Object]"
+  >
+    <div
+      class="ui center aligned basic segment"
+    >
+      <div />
+    </div>
+    <!--  -->
+  </semantic-modal>
 </div>
 `;
 
@@ -315,6 +315,17 @@ exports[`App.vue Cached data + jwt custom layout 1`] = `
   >
     this is a test
   </div>
+  <semantic-modal
+    size="small"
+    settings="[object Object]"
+  >
+    <div
+      class="ui center aligned basic segment"
+    >
+      <div />
+    </div>
+    <!--  -->
+  </semantic-modal>
 </div>
 `;
 
@@ -341,17 +352,6 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
         >
           Test
         </h1>
-        <semantic-modal
-          size="small"
-          settings="[object Object]"
-        >
-          <div
-            class="ui center aligned basic segment"
-          >
-            <div />
-          </div>
-          <!--  -->
-        </semantic-modal>
         <div
           id="universal-editor"
           class="ui segments universal-editor slide-enter slide-enter-active"
@@ -413,6 +413,17 @@ exports[`App.vue Cached data + jwt empty template 1`] = `
       </div>
     </div>
   </div>
+  <semantic-modal
+    size="small"
+    settings="[object Object]"
+  >
+    <div
+      class="ui center aligned basic segment"
+    >
+      <div />
+    </div>
+    <!--  -->
+  </semantic-modal>
 </div>
 `;
 
@@ -426,6 +437,17 @@ exports[`App.vue should bounce to login page if no JWT exists 1`] = `
   >
     <!--  -->
   </div>
+  <semantic-modal
+    size="small"
+    settings="[object Object]"
+  >
+    <div
+      class="ui center aligned basic segment"
+    >
+      <div />
+    </div>
+    <!--  -->
+  </semantic-modal>
 </div>
 `;
 
@@ -444,5 +466,16 @@ exports[`App.vue should carry on loading with jwt but no cached data 1`] = `
       />
     </div>
   </div>
+  <semantic-modal
+    size="small"
+    settings="[object Object]"
+  >
+    <div
+      class="ui center aligned basic segment"
+    >
+      <div />
+    </div>
+    <!--  -->
+  </semantic-modal>
 </div>
 `;
