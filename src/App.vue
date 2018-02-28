@@ -20,7 +20,6 @@
                 <!-- <div v-if="title" class="headingLinks"><span slot="links"></span></div> -->
                 <h1 v-if="title" v-html="title"></h1>
                 <div id="main-content-body" v-bind:class="classList">
-                    <notifications-sidebar/>
                     <slot v-if="globalPermission" name="content">
                         <h1 class="ui heading">Test</h1>
                     </slot>
@@ -34,6 +33,8 @@
                             </div>
                         </div>
                     </slot>
+                    <croud-confirm ref="confirmation"/>
+                    <notifications-sidebar/>
                 </div>
             </div>
         </div>
@@ -41,7 +42,10 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
+
+import CroudConfirm from 'croud-style-guide/src/components/shared/misc/Confirm'
 
 import NotificationsSidebar from './components/notifications/Sidebar'
 import TopBar from './components/TopBar'
@@ -49,16 +53,28 @@ import Navigation from './components/navigation/Navigation'
 import Login from './Login/App'
 
 export default {
-    components: { TopBar, Navigation, Login, NotificationsSidebar },
+    components: {
+        TopBar,
+        Navigation,
+        Login,
+        NotificationsSidebar,
+        CroudConfirm,
+    },
+
     props: {
-        title: {},
+        title: {
+            type: String,
+        },
         flush: {
+            type: Boolean,
             default: true,
         },
         suppressNav: {
+            type: Boolean,
             default: false,
         },
         suppressTopbar: {
+            type: Boolean,
             default: false,
         },
     },
@@ -137,6 +153,11 @@ export default {
     created() {
         this.handleLogin()
         this.$echo.connector.socket.on('disconnect', this.onDisconnect)
+    },
+
+    mounted() {
+        Vue.confirm = this.$refs.confirmation.confirm
+        Vue.prototype.$confirm = this.$refs.confirmation.confirm
     },
 }
 </script>
