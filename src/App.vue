@@ -22,7 +22,7 @@
                 <div id="main-content-body" v-bind:class="classList">
                     <notifications-sidebar/>
                     <slot v-if="globalPermission" name="content">
-                        <h1 class="ui heading">{{ $t('message.hello') }}</h1>
+                        <h1 class="ui heading">Test</h1>
                     </slot>
                     <slot v-else name="denied">
                         <div class="ui basic very padded secondary permissions-denied segment">
