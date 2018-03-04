@@ -35,6 +35,21 @@ You can pass an additional option to disable legacy SSO auth
 Vue.use(CroudLayout, { store, noLegacyAuth: true })
 ```
 
+## Echo websockets
+The croud-layout plugin will add and set up [vue-echo](https://github.com/happyDemon/vue-echo) for your project.
+
+```js
+//App.vue
+this.$echo.private(`App.Model.User.${this.jwt.sub}`)
+    .listen('PushNotification', (e) => {
+        this.newMessage(e.data)
+    })
+```
+See their docs for more examples.
+
+### Notifications
+Croud-layout's frame now includes the notification's sidebar which uses the websockets to update notifications in realtime.
+
 ## Moment
 The croud-layout plugin will add [vue-moment](https://github.com/brockpetrie/vue-moment) to your project. This will globally register the moment filter...
 ```html
