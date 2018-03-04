@@ -34,6 +34,31 @@ You can pass an additional option to disable legacy SSO auth
 ```js
 Vue.use(CroudLayout, { store, noLegacyAuth: true })
 ```
+
+## Moment
+The croud-layout plugin will add [vue-moment](https://github.com/brockpetrie/vue-moment) to your project. This will globally register the moment filter...
+```html
+<div>{{ date | moment('YYYY-MM-DD')}}</div>
+```
+
+...and also add $moment to the Vue prototype...
+
+```js
+//App.vue
+this.$moment(date).format('YYYY-MM-DD')
+```
+
+See their docs for more examples.
+
+### Custom moment instance
+You can pass in a custom moment instance to replace vue-moment's default instance by adding a moment object to the croud-layout plugin options
+
+```js
+import moment from 'moment-timezone'
+...
+Vue.use(CroudLayout, { store, moment })
+```
+
 ## Axios plugin
 A drop in replacement for vue-resource
 
