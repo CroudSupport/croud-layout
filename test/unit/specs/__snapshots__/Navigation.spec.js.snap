@@ -358,18 +358,21 @@ Array [
     "class": "external-link datorama-link",
     "icon": "datorama icon",
     "label": "Datorama",
+    "target": "_blank",
     "uri": "https://performance.croudcontrol.com",
   },
   Object {
     "class": "external-link schoox-link",
     "icon": "schoox icon",
     "label": "Schoox",
+    "target": "_blank",
     "uri": "https://www.schoox.com/login.php",
   },
   Object {
     "class": "external-link peoplehr-link",
     "icon": "peoplehr icon icon",
     "label": "Croud HR",
+    "target": "_blank",
     "uri": "https://croud.peoplehr.net",
   },
 ]
