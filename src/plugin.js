@@ -14,7 +14,10 @@ window.io = require('socket.io-client')
 export default {
     install(Vue, options) {
         Vue.component('croud-layout', croudLayout)
-        Vue.use(VueMoment)
+        Vue.use(VueMoment, {
+            moment: options.moment || false,
+        })
+
         Vue.use(VueEcho, {
             broadcaster: 'socket.io',
             host: `${node_gateway_url.includes('https://') ? '' : '//'}${node_gateway_url}`,
