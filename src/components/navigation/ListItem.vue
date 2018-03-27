@@ -6,7 +6,7 @@
           {{item.label}}
       </span>
     </a>
-    <a v-else :id="itemSlug" :class="item.class" :href="item.uri">
+    <a v-else :id="itemSlug" :class="item.class" :href="item.uri" :target="item.target">
       <i v-if="item.icon != ''" :class="item.icon + ' link-icon'"></i>
       <span v-html="item.label"></span>
     </a>
