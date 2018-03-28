@@ -119,7 +119,7 @@ export default {
                         uri: 'https://performance.croudcontrol.com',
                         icon: 'datorama icon',
                         class: 'external-link datorama-link',
-                        target: '_blank'
+                        target: '_blank',
                     },
 
                     {
@@ -127,7 +127,7 @@ export default {
                         uri: 'https://www.schoox.com/login.php',
                         icon: 'schoox icon',
                         class: 'external-link schoox-link',
-                        target: '_blank'
+                        target: '_blank',
                     },
 
                     {
@@ -135,7 +135,7 @@ export default {
                         uri: 'https://croud.peoplehr.net',
                         icon: 'peoplehr icon icon',
                         class: 'external-link peoplehr-link',
-                        target: '_blank'
+                        target: '_blank',
                     },
                 ]
             }
