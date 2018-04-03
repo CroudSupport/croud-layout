@@ -129,5 +129,11 @@
     "setupFiles": [
       "<rootDir>/test/unit/mocks/localStorage.js"
     ]
+  },
+  "browserify": {
+    "transform": [
+      "vueify",
+      ["babelify", { "presets": ["es2015"] }]
+    ]
   }
 }
