@@ -33,12 +33,12 @@
                             </div>
                         </div>
                     </slot>
-                    <croud-confirm ref="confirmation"/>
                     <notifications-sidebar/>
                 </div>
             </div>
         </div>
     </slot>
+    <croud-confirm ref="confirmation"/>
   </div>
 </template>
 <script>
