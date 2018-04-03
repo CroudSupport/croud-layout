@@ -214,7 +214,73 @@ exports[`App.vue Cached data + jwt Full temnplate 1`] = `
       <div
         class="contained"
       >
-        <!--  -->
+        <div
+          class="contained scrollable navigation-block"
+        >
+          <div
+            class="footer"
+          >
+            <strong
+              class="expand-button"
+            >
+              <i
+                class="arrow circle double icon right"
+              />
+            </strong>
+          </div>
+          <ul
+            data-depth="1"
+          >
+            <li
+              class=""
+            >
+              <a
+                id="menuitem-dashboard"
+                href="/"
+              >
+                <i
+                  class="dashboard icon link-icon"
+                />
+                <span>
+                  Dashboard
+                </span>
+              </a>
+              <!--  -->
+            </li>
+            <li
+              class=""
+            >
+              <a
+                id="menuitem-mydetails"
+                href="/user/account"
+              >
+                <i
+                  class="user icon link-icon"
+                />
+                <span>
+                  My Details
+                </span>
+              </a>
+              <!--  -->
+            </li>
+            <li
+              class=""
+            >
+              <a
+                id="menuitem-helpcentre"
+                href="https://croud.freshdesk.com/support/solutions"
+              >
+                <i
+                  class="help circle outline icon link-icon"
+                />
+                <span>
+                  Help Centre
+                </span>
+              </a>
+              <!--  -->
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div
