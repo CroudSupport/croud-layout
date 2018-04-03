@@ -117,10 +117,45 @@ export default {
                 this.loadNotifications()
             })
         },
+
+        onDisconnect() {
+            // const diconnected = this.$toasted.error('Connection lost refresh page', { duration: 0 })
+            const diconnectedTime = window.performance.now()
+            this.$http.post('/api/analytics', {
+                type: 'websocket',
+                data: {
+                    event: 'disconnected',
+                    time: diconnectedTime,
+                },
+            })
+
+            this.$echo.connector.socket.on('connect', () => this.onReconnect(diconnectedTime))
+            this.$echo.connector.socket.off('disconnect')
+        },
+
+        onReconnect(diconnectedTime) {
+            // this.$toasted.success('Web socket reconnected')
+            // diconnected.goAway(0)
+
+            this.$http.post('/api/analytics', {
+                type: 'websocket',
+                data: {
+                    event: 'reconnected',
+                    since: window.performance.now() - diconnectedTime,
+                },
+            })
+
+            this.$echo.connector.socket.on('disconnect', this.onDisconnect)
+            this.$echo.connector.socket.off('connect')
+        },
+    },
+
+    created() {
+        this.handleLogin()
+        this.$echo.connector.socket.on('disconnect', this.onDisconnect)
     },
 
     mounted() {
-        this.handleLogin()
         Vue.confirm = this.$refs.confirmation.confirm
         Vue.prototype.$confirm = this.$refs.confirmation.confirm
     },

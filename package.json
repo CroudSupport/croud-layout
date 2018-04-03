@@ -1,7 +1,7 @@
 {
   "name": "croud-layout",
   "main": "src/plugin.js",
-  "version": "1.11.4",
+  "version": "1.12.0-5",
   "description": "A Vue.js project",
   "author": "Brock <brock.reece@croud.co.uk>",
   "private": false,
@@ -26,7 +26,8 @@
     "url-template": "^2.0.8",
     "vue-echo": "^1.0.1",
     "vue-i18n": "^7.4.2",
-    "vue-moment": "^2.1.0"
+    "vue-moment": "^2.1.0",
+    "vue-toasted": "^1.1.24"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
