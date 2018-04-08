@@ -27,7 +27,21 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        '/api': {
+            target: 'http://core.croudcontrol.local',
+            changeOrigin: true,
+        },
+        '/login': {
+            target: 'http://gateway.croudcontrol.local',
+            changeOrigin: true,
+        },
+        '/socket.io': {
+            target: 'http://node-gateway.croudcontrol.local:6001',
+            changeOrigin: true,
+            ws: true,
+        },
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
