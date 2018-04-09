@@ -17,8 +17,8 @@ describe('Universal Store Module', () => {
         })
 
         it('should start in a loading state', () => {
-            expect(typeof Universal.state.loading).toEqual('boolean')
-            expect(Universal.state.loading).toEqual(true)
+            expect(typeof Universal.state.currentState).toEqual('string')
+            expect(Universal.state.currentState).toEqual('loading')
         })
     })
 
@@ -31,8 +31,8 @@ describe('Universal Store Module', () => {
         })
 
         it('should stop loading when STOP_LOADING mutation is called', () => {
-            $store.commit('STOP_LOADING')
-            expect($store.state.loading).toEqual(false)
+            $store.commit('UPDATE_CURRENT_STATE', 'app')
+            expect($store.state.currentState).toEqual('app')
         })
 
         it('should update the user object', () => {
@@ -119,7 +119,7 @@ describe('Universal Store Module', () => {
         describe('$init', () => {
             it('should stop loading without jwt', () => {
                 $store.dispatch('$init')
-                expect($store.state.loading).toBe(false)
+                expect($store.state.currentState).toBe('login')
             })
 
             it('should keep loading with JWT but no user cache', () => {
@@ -127,7 +127,7 @@ describe('Universal Store Module', () => {
                 $store.commit('UPDATE_JWT')
 
                 $store.dispatch('$init')
-                expect($store.state.loading).toBe(true)
+                expect($store.state.currentState).toBe('loading')
             })
 
             it('should stop loading if user data is in the cache', async () => {
@@ -140,7 +140,7 @@ describe('Universal Store Module', () => {
                 $store.commit('UPDATE_JWT')
 
                 await $store.dispatch('$init').then(() => {
-                    expect($store.state.loading).toBe(false)
+                    expect($store.state.currentState).toBe('app')
                 })
             })
         })

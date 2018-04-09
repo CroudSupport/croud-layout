@@ -2,13 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueI18n from 'vue-i18n'
 
-// import _ from 'lodash'
+import { cloneDeep } from 'lodash'
 import localforage from 'localforage'
 import localstorage from 'localstorage'
 // import axios from 'axios'
 
+import universal from '../../../src/store/modules/universal'
+import notifications from '../../../src/store/modules/notifications'
 import App from '../../../src/App'
-import Store from '../../../src/store'
+// import Store from '../../../src/store'
 import messages from '../../../src/il8n'
 
 Vue.use(VueI18n)
@@ -17,6 +19,13 @@ const jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjVlNjE0OWQyMjgzYzBhZmE
 const i18n = new VueI18n({
     locale: 'en',
     messages,
+})
+
+const vuexFactory = () => new Vuex.Store({
+    modules: {
+        universal: cloneDeep(universal),
+        notifications: cloneDeep(notifications),
+    },
 })
 
 describe('App.vue', () => {
@@ -30,14 +39,16 @@ describe('App.vue', () => {
             components: {
                 App,
             },
-            store: Store,
+            store: vuexFactory(),
             render: h => h(App),
         }).$mount()
     })
 
-    test('should bounce to login page if no JWT exists', () => {
-        expect($vm.$el).toMatchSnapshot()
-        expect(typeof $vm).toBe('object')
+    test('should bounce to login page if no JWT exists', async () => {
+        await $vm.$store.dispatch('universal/$init').then(() => {
+            expect($vm.$el).toMatchSnapshot()
+            expect(typeof $vm).toBe('object')
+        })
     })
 
     test('should carry on loading with jwt but no cached data', async () => {
@@ -69,7 +80,7 @@ describe('App.vue', () => {
                 components: {
                     App,
                 },
-                store: Store,
+                store: vuexFactory(),
                 render: h => h(App, {
                     props: {
                         suppressTopbar: true,
@@ -96,7 +107,7 @@ describe('App.vue', () => {
                 components: {
                     App,
                 },
-                store: Store,
+                store: vuexFactory(),
                 render: h => h(App, {
                     props: {
                         suppressTopbar: true,
