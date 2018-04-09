@@ -2,6 +2,7 @@ import Vue from 'vue'
 import jwtDecode from 'jwt-decode'
 import localforage from 'localforage'
 import { rootStore } from '../localForage'
+import stateMachine from '../../state'
 
 export default {
     state: {
@@ -11,10 +12,10 @@ export default {
         userSwitches: [],
         jwt: localStorage.getItem('jwt') ? jwtDecode(localStorage.getItem('jwt')) : {},
         root: localStorage.getItem('root') ? jwtDecode(localStorage.getItem('root')) : {},
-        loading: true,
         legacyAuth: true,
         globalPermissionKey: '',
         expandedNav: false,
+        currentState: stateMachine.initial,
     },
     mutations: {
         UPDATE_USER(state, newState) {
@@ -35,9 +36,6 @@ export default {
         UPDATE_ROOT(state) {
             state.root = jwtDecode(localStorage.getItem('root'))
         },
-        STOP_LOADING(state) {
-            state.loading = false
-        },
         STOP_LEGACY_AUTH(state) {
             state.legacyAuth = false
         },
@@ -46,6 +44,9 @@ export default {
         },
         EXPAND_NAV(state, expand) {
             state.expandedNav = expand
+        },
+        UPDATE_CURRENT_STATE(state, currentState) {
+            state.currentState = currentState
         },
     },
     actions: {
@@ -89,23 +90,24 @@ export default {
                 context.dispatch('updateUserSwitches', response.body.data.user_switches.data)
             }
 
-            context.commit('STOP_LOADING')
+            context.dispatch('transition', 'LOGIN')
         }).catch(() => {
+            context.dispatch('transition', 'LOGOUT')
             context.dispatch('updateUser', {})
-            context.commit('STOP_LOADING')
         }),
 
+        transition: (context, transition) => context.commit('UPDATE_CURRENT_STATE', stateMachine.transition(context.state.currentState, transition).value),
+
         $init: async (context) => {
-            context.state.loading = true
             if (!localStorage.getItem('jwt')) {
-                context.commit('STOP_LOADING')
+                context.dispatch('transition', 'LOGOUT')
                 return
             }
 
             await Vue.localForage.getItem('updateUser').then((data) => {
                 if (data && data.id) {
                     context.commit('UPDATE_USER', data)
-                    context.commit('STOP_LOADING')
+                    context.dispatch('transition', 'SHOW_APP')
                 }
 
                 if (!context.getters.root.sub) context.commit('UPDATE_ROOT_USER', data)
@@ -140,7 +142,6 @@ export default {
         userSwitches: state => state.userSwitches,
         jwt: state => state.jwt,
         root: state => state.root,
-        loading: state => state.loading,
         legacyAuth: state => state.legacyAuth,
         effectivePermissions: (state) => {
             if (!state.permissions.global || !state.permissions.global.effective_permissions) return []
@@ -151,6 +152,7 @@ export default {
             return state.permissions.global.effective_permissions.indexOf(state.globalPermissionKey) !== -1
         },
         expandedNav: state => state.expandedNav,
+        currentState: state => state.currentState,
     },
 
     namespaced: true,
