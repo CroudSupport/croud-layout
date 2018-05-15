@@ -149,11 +149,7 @@
                         <button v-bind:class="['ui','button', 'fluid', 'blue', {'loading': loading}]" @click="check">Sign in to Croud Control</button>
                         <div class="ui horizontal divider">Or</div>
                         <i title="Google" class="red inverted circular large google link icon" @click="socialAuth('google')"></i>
-                        <i title="Facebook" class="blue inverted circular large facebook link icon" @click="socialAuth('facebook')"></i>
-                        <!-- <i title="Twitter" class="blue inverted circular large twitter link icon" @click="socialAuth('twitter')"></i> -->
                         <i title="Linkedin" class="blue inverted circular large linkedin link icon" @click="socialAuth('linkedin')"></i>
-                        <!-- <i title="Github" class="circular large github alternate link icon" @click="socialAuth('github')"></i> -->
-
                         <div class="ui segment basic footer">
                             <button class="ui button mini basic" @click.prevent="view='password'">Forgot your password?</button>
                         </div>
