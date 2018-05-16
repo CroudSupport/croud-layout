@@ -203,7 +203,7 @@
                     })
 
                     if (this.legacyAuth) {
-                        this.$httpLegacy.post('/login/auth/', { authToken: response.data.jwt.access_token })
+                        this.$httpLegacy.post('/authenticate/', { authToken: response.data.jwt.access_token })
                             .then(this.redirectAfterLogin)
                     }
                 })
@@ -226,7 +226,7 @@
                     this.loading = false
                 })
                 if (this.legacyAuth) {
-                    this.$httpLegacy.post('/login/auth/', { authToken: localStorage.getItem('root') })
+                    this.$httpLegacy.post('/authenticate/', { authToken: localStorage.getItem('root') })
                         .then(this.redirectAfterLogin)
                 }
             },
