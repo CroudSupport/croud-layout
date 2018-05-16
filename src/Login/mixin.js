@@ -153,7 +153,7 @@ export default {
                 this.$emit('login')
 
                 if (this.legacyAuth) {
-                    this.$httpLegacy.post('/login/auth/', {
+                    this.$httpLegacy.post('/authenticate/', {
                         authToken: response.data.jwt,
                     })
                 }
@@ -184,7 +184,7 @@ export default {
             window.addEventListener('message', (event) => {
                 localStorage.setItem('jwt', event.data.access_token)
                 if (this.legacyAuth) {
-                    this.$httpLegacy.post('/login/auth/', {
+                    this.$httpLegacy.post('/authenticate/', {
                         authToken: event.data.access_token,
                     })
                 }
