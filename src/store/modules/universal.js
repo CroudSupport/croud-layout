@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import jwtDecode from 'jwt-decode'
 import localforage from 'localforage'
+import jwtDecode from '../jwtSafeDecode'
 import { rootStore } from '../localForage'
 
 export default {
@@ -97,7 +97,7 @@ export default {
 
         $init: async (context) => {
             context.state.loading = true
-            if (!localStorage.getItem('jwt')) {
+            if (!localStorage.getItem('jwt') || !context.state.jwt.sub) {
                 context.commit('STOP_LOADING')
                 return
             }
