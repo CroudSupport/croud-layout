@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import localforage from 'localforage'
-import jwtDecode from 'jwt-decode'
+import jwtDecode from './jwtSafeDecode'
 
 const jwt = localStorage.getItem('jwt') ? jwtDecode(localStorage.getItem('jwt')) : {}
 const rootJwt = localStorage.getItem('root') ? jwtDecode(localStorage.getItem('root')) : {}

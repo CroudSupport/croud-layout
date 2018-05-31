@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jwtSafeDecode valid token 1`] = `
+Object {
+  "aud": "gateway-ireland",
+  "exp": 1528035230,
+  "iat": 1527776031,
+  "jti": "1b86340fa1c959a069f550f42402d4419818b167b960fd6d159eb84881e2b2957683045cf75210d4",
+  "nbf": 1527776031,
+  "scopes": Array [],
+  "sub": "2765",
+}
+`;
