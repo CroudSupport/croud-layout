@@ -1,3 +1,5 @@
+import { checkPermissionHelper } from './security'
+
 export default {
     computed: {
         filteredItems() {
@@ -6,7 +8,7 @@ export default {
                     item.children = item.children.filter(recur)
                 }
 
-                return !item.permission || Object.values(this.permissions).indexOf(item.permission) !== -1
+                return !item.permission || checkPermissionHelper(this.permissions, item.permission)
             }
 
             return this.items.filter(recur)

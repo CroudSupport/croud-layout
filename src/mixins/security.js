@@ -1,5 +1,9 @@
 import { mapGetters } from 'vuex'
 
+export const checkPermissionHelper = (effectivePermissions, permissionKey) => Object.values(effectivePermissions).indexOf(permissionKey) !== -1 ||
+    Object.values(effectivePermissions).indexOf(permissionKey.replace(/\.\w+$/, '.*')) !== -1 ||
+    Object.values(effectivePermissions).indexOf(permissionKey.replace(/(\.\w+){2}$/, '.*.*')) !== -1
+
 export default {
     data() {
         return {
@@ -35,10 +39,7 @@ export default {
                     return
                 }
 
-                if ((this.allowOwner && this.owner) ||
-                    Object.values(this.effectivePermissions).indexOf(this.permission[key]) !== -1 ||
-                    Object.values(this.effectivePermissions).indexOf(this.permission[key].replace(/\.\w+$/, '.*')) !== -1 ||
-                    Object.values(this.effectivePermissions).indexOf(this.permission[key].replace(/(\.\w+){2}$/, '.*.*')) !== -1) {
+                if ((this.allowOwner && this.owner) || checkPermissionHelper(this.effectivePermissions, this.permission[key])) {
                     this.security[key] = true
                 } else {
                     this.security[key] = false
