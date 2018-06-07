@@ -220,7 +220,7 @@ Array [
   Object {
     "label": "Available Academy Courses",
     "permission": "menu.academy.read",
-    "uri": "/academy/course/owned/",
+    "uri": "/academy/course/available/",
   },
   Object {
     "icon": "user icon",
@@ -296,7 +296,7 @@ Array [
   Object {
     "label": "Available Academy Courses",
     "permission": "menu.academy.read",
-    "uri": "/academy/course/owned/",
+    "uri": "/academy/course/available/",
   },
   Object {
     "icon": "user icon",
