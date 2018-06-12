@@ -150,7 +150,7 @@ export default {
                     },
                     {
                         label: 'Available Academy Courses',
-                        uri: '/academy/course/owned/',
+                        uri: '/academy/course/available/',
 
                         permission: 'menu.academy.read',
                     },
