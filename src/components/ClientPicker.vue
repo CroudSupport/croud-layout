@@ -30,7 +30,7 @@
 
         methods: {
             viewClient() {
-                if (this.selected_client) { window.location = `/control/view-client/id/${this.selected_client}` }
+                if (this.selected_client) { window.location = `/control/view-client/id/${this.selected_client}#work` }
             },
 
             viewJob() {
