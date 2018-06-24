@@ -1,7 +1,14 @@
 language: node_js
 node_js:
- - "node"
+- node
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-  - export PATH="$HOME/.yarn/bin:$PATH"
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+- export PATH="$HOME/.yarn/bin:$PATH"
 cache: yarn
+deploy:
+  provider: npm
+  email: brockreece@gmail.com
+  api_key:
+    secure: EPLGrVOQdVISS1/03NAMfREfj3lvCDExXuzMkUhupq9CpkT6Ry99lNMfe6W/RTESn3MswzJL4x9NNqmokZNgnh+tSwdw6NSW+M5XShPpyMyCf9d/idqz4pOh0XHT5tql3Yz/rE0Opvb2e+9IlN+zaMr/2BxksydN2NWaI6Dpvr1/aaS6k3DgizBT/8jGMCcJA5zdLRw/AhmQTB4mwREE1yLCXtP/z4DNC7NSz3mgVU/5re0QSc+kG+Jj3MXNNH7Zmihb6us8QMlWNAkJbLIkJ6clS22gsgjggLgS/ClUDxlbJHEGVEpak0SaJUmGKIMvBzPI6t45O9xq82cJUJg6KaBELFTY8P6LF8vx0460mbOOGRKAz6mA+V2wjE4sfKF8YLF8xLg6aYXhbvceqKYIKAnCwIMBbujxY3RwM2JWVhXZ6XphLTMg7TGM05Eqf5DLa0pBaoFGDwB2Hv0XMkeKxVuqdZctx6StJvt7COeF0t3MV1bP3ibxS31xdwrpQ5O1DG1Hh5XaAuxlXW7AYaJ8/aLimC2VjqUC35cXjShqQQ1bn1w5G3S3Mp76xQZvVi6EBjVXbxipHz+bjuiPli4Gd2awSJCuhp2+ki51iaXVcd6wy6v4TEiKAgaBupNXJrvLqdlt1Gx1YmNq1DcO6vrjPYZmSUlT0K5heK6J1goQWak=
+  on:
+    tags: true
