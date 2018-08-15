@@ -8,7 +8,7 @@
                             {{ notification.name }}
                         </div>
                         <div class="item">
-                            <small>{{ $moment.utc(notification.deliver_at.date).local().format('ll H:m') }}</small>
+                            <small>{{ $moment.utc(notification.deliver_at.date).local().format('ll HH:mm') }}</small>
                         </div>
                     </div>
                 </div>
