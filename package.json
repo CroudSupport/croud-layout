@@ -27,7 +27,8 @@
     "vue-echo": "^1.0.1",
     "vue-i18n": "^7.4.2",
     "vue-moment": "^2.1.0",
-    "vue-toasted": "^1.1.24"
+    "vue-toasted": "^1.1.24",
+    "xstate": "^3.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

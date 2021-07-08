@@ -1,12 +1,12 @@
 <template>
   <div id="main-container">
-    <top-bar v-if="user.id && !suppressTopbar" :user="user"></top-bar>
-    <div v-if="loading" class="ui very padded basic center aligned loading-overlay segment">
+    <top-bar v-if="currentState === 'app' && !suppressTopbar" :user="user"></top-bar>
+    <div v-if="currentState === 'loading'" class="ui very padded basic center aligned loading-overlay segment">
         <div>
             <img class="ui small image" src='../static/img/croud_logo_new.svg' />
         </div>
     </div>
-    <slot name="login" v-else-if="!user.id">
+    <slot name="login" v-else-if="currentState === 'login'">
         <login />
     </slot>
     <slot v-else name="custom-layout">
@@ -95,9 +95,9 @@ export default {
             user: 'universal/user',
             jwt: 'universal/jwt',
             root: 'universal/root',
-            loading: 'universal/loading',
             globalPermission: 'universal/globalPermission',
             expanded: 'universal/expandedNav',
+            currentState: 'universal/currentState',
         }),
     },
 
